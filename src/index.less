@@ -1,0 +1,396 @@
+.topology-designable {
+  // 解决 safiri 浏览器下 forgetObject下 body position 为 static的问题
+  .safiri {
+    foreignObject {
+      body {
+        position: fixed;
+      }
+    }
+  }
+
+  .ant-collapse-content-box {
+    padding: 4px;
+    user-select: none;
+    display: inline-grid;
+    grid-template-columns: repeat(4, 74px);
+    grid-auto-rows: 74px;
+    grid-gap: 6px;
+  }
+
+  &-material-panel {
+    position: relative;
+    height: 100%;
+    border: 1px solid #e6e6e6;
+
+    .material-list {
+      padding: 4px;
+      user-select: none;
+      display: inline-grid;
+      grid-template-columns: repeat(4, 74px);
+      grid-auto-rows: 74px;
+      grid-gap: 6px;
+    }
+
+    // 默认节点样式
+    .default {
+      display: flex;
+      flex-direction: column;
+      cursor: move;
+      width: 100%;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+
+      &.span {
+        .icon {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      .icon {
+        cursor: move;
+        width: 40px;
+        height: 40px;
+        flex: 1 1 auto;
+      }
+
+      .label {
+        cursor: move;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: break-word;
+        vertical-align: bottom;
+        display: inline-block;
+        max-width: 100%;
+        flex: 0 0 auto;
+      }
+    }
+
+    .item {
+      display: flex;
+      flex-direction: column;
+      cursor: move;
+      justify-content: center;
+      align-items: center;
+
+      .label.layout-vertical {
+        writing-mode: unset;
+      }
+    }
+  }
+
+  &-content {
+    border: 1px solid #ccc;
+    .content-section {
+      height: 100%;
+
+      .canvas {
+        height: 100%;
+      }
+    }
+  }
+
+  .toolbar {
+    background-color: #fff;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 7px 8px;
+    border-bottom: 1px solid #e6e6e6;
+
+    .toolbar-group-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .toolbar-item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 24px;
+      text-align: center;
+      line-height: 24px;
+      height: 24px;
+      border-radius: 4px;
+      transition-property: background-color, color;
+      transition-duration: 0.3s;
+      cursor: pointer;
+      color: #f1f1f1;
+
+      &.disabled {
+        cursor: not-allowed;
+        filter: invert(100%);
+      }
+
+      &:not(.disabled):hover {
+        background-color: #f2f3f5;
+        color: #333;
+      }
+    }
+
+    .toolbar-help {
+      color: inherit;
+      margin-left: auto;
+    }
+
+    .zoom-select {
+      font-size: 12px;
+      width: 80px;
+      display: flex;
+      padding: 0 8px;
+      align-items: center;
+      justify-content: space-between;
+      height: 24px;
+      transition-property: background-color, color;
+      transition-duration: 0.3s;
+      border-radius: 4px;
+
+      &:hover {
+        background-color: #f2f3f5;
+        color: #333;
+      }
+    }
+
+    .toolbar-icon {
+      font-size: 14px;
+    }
+
+    .q-dropdown {
+      font-size: none;
+    }
+
+    .help {
+      .short-key {
+        margin-left: 8px;
+      }
+    }
+  }
+
+  &-props-panel {
+    height: 100%;
+  }
+
+  // 覆盖 x6 的样式
+  .topology-designable-scoller {
+    height: 100% !important;
+    overflow: auto;
+
+    .x6-graph-pagebreak-vertical,
+    .x6-graph-pagebreak-horizontal {
+      opacity: 0.7;
+    }
+
+    .x6-graph-pagebreak-vertical {
+      border-left-color: red;
+    }
+
+    .x6-graph-pagebreak-horizontal {
+      border-top-color: red;
+    }
+  }
+
+  &.topology-designable-preview {
+    .topology-designable-scoller {
+      height: 100% !important;
+      width: 100% !important;
+      overflow-x: auto;
+      overflow-y: visible;
+    }
+  }
+}
+
+.topology-designable,
+.x6-widget-dnd.dragging {
+  --topology-editor-error-color: red; // 警告色调
+  --topology-editor-normal-color: #02686c; // 正常颜色(如:文字)
+  --topology-editor-background-normal: #f4f8f9; // 普通背景色
+  --topology-editor-border-color: #02686c; // 边框颜色
+  --topology-editor-border-width: 1px; // 边框宽度
+  --topology-editor-border-radius: 6px; // 边框圆角
+  --topology-editor-edge-color: #02686c; // 边颜色
+  --topology-editor-node-padding: 2px; // 节点内容间距
+
+  .x6-node {
+    foreignObject {
+      > body {
+        min-height: unset;
+      }
+    }
+
+    transition: filter 0.3s;
+  }
+
+  // 拓扑图编辑器节点
+  .topology-designable-node {
+    border: var(--topology-editor-border-width) solid white;
+    border-radius: var(--topology-editor-border-radius);
+    padding: var(--topology-editor-node-padding);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .x6-widget-selection-box {
+    border: 2px dashed var(--topology-editor-border-color);
+  }
+
+  .x6-widget-selection-inner {
+    border: 1px solid var(--topology-editor-border-color);
+  }
+
+  .x6-widget-transform {
+    border: none;
+  }
+
+  .circle {
+    border-radius: 50%;
+    border-width: 1px;
+    border-color: var(--topology-editor-border-color);
+  }
+
+  .label {
+    border: none;
+
+    // 水平方向
+    &.layout-horizontal {
+      display: inline-block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      word-break: break-word;
+      vertical-align: bottom;
+      max-width: 100%;
+    }
+    // 垂直方向
+    &.layout-vertical {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      writing-mode: vertical-rl;
+    }
+  }
+
+  .lightning {
+    border: none;
+  }
+
+  .node {
+    position: relative;
+    border-radius: var(--topology-editor-border-radius);
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+
+    .inner {
+      text-align: center;
+      position: relative;
+      display: inline-block;
+      padding: 0;
+      margin: 6px 6px 0 6px;
+
+      >img {
+        height: 40px;
+        width: 40px;
+      }
+    }
+
+    .label {
+      max-width: 100%;
+      line-height: 18px;
+      font-size: 12px;
+      color: var(--topology-editor-normal-color);
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      box-sizing: border-box;
+      padding: 0 4px 4px 4px;
+      flex: 1 1 auto;
+      vertical-align: top;
+    }
+
+    // 文本不省略
+    &.full {
+      .label {
+        overflow: visible;
+        white-space: normal;
+        text-align: center;
+        word-break: break-all;
+      }
+    }
+  }
+
+  .rect {
+    position: relative;
+    border-radius: var(--topology-editor-border-radius);
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+
+  .snippet {
+    position: relative;
+    border-radius: var(--topology-editor-border-radius);
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+
+    .inner {
+      text-align: center;
+      width: 42px;
+      height: 42px;
+      position: relative;
+      box-sizing: border-box;
+      display: inline-block;
+      margin: 4px 0 0 0;
+      padding: 0;
+    }
+
+    .label {
+      line-height: 16px;
+      font-size: xx-small;
+      color: var(--topology-editor-normal-color);
+    }
+  }
+
+  .inner-slot,
+  .full-slot {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .full-slot {
+    cursor: pointer;
+  }
+}
+
+/* 隐藏默认滚动条 */
+.topology-designable ::-webkit-scrollbar {
+  display: none;
+}
+
+/* 当鼠标悬停在容器上时显示滚动条 */
+.topology-designable :hover::-webkit-scrollbar {
+  display: block;
+  width: 12px;
+  height: 12px;
+}
+
+/* 定义滚动条样式 */
+.topology-designable ::-webkit-scrollbar-thumb {
+  background-color: #c0c0c0;
+  border-radius: 6px;
+}
+
+.topology-designable ::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+}
