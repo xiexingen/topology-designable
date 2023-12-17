@@ -15,7 +15,7 @@ const Button: React.FC<IButtonProps> = (props) => {
   return (
     <>
       {
-        props.tooltip?<Tooltip placement="bottom" title={props.tooltip}>{Content}</Tooltip>:Content
+        props.tooltip?<Tooltip mouseEnterDelay={0.8} placement="bottom" title={props.tooltip}>{Content}</Tooltip>:Content
       }
     </>
   );

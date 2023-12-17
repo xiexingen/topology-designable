@@ -144,7 +144,6 @@ export function bindGraphEvent(graph: Graph, container: HTMLElement) {
   const dispatchCellCount = () => {
     const cells = graph.getCells();
     eventBus.emit(EVENT_MAP.TOOLBAR_STATE_CHANGE, {
-      selectAll: !cells?.length,
       export: !cells?.length,
     });
   };

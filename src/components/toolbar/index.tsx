@@ -28,7 +28,6 @@ const Toolbar: React.FC<ToolbarProps> = (props) => {
     undo: true,
     redo: true,
     delete: true,
-    selectAll: true,
     export: false,
     exportImage: true,
     exportJson: true,
@@ -44,14 +43,6 @@ const Toolbar: React.FC<ToolbarProps> = (props) => {
   })
 
   const zoomText = Math.floor(zooomRef.current * 100) + '%';
-
-  const handleSelectAll = () => {
-    const cells = graph?.getCells();
-    if (!cells) {
-      return;
-    }
-    graph?.select(cells);
-  };
 
   const handleDeleteSelect = () => {
     const cells = graph?.getSelectedCells();
@@ -110,10 +101,11 @@ const Toolbar: React.FC<ToolbarProps> = (props) => {
     eventBus.emit(EVENT_MAP.NODE_SELECTED);
   };
 
-  const handleChangeZoom = (zoom: number) => {
-    graph?.zoomTo(zoom, {
+  const handleChangeZoom = (zoom: number,absolute=false) => {
+    graph?.zoom(zoom, {
       minScale: GRAPH_ZOOM.min,
       maxScale: GRAPH_ZOOM.max,
+      absolute,
     });
   };
 
@@ -142,9 +134,6 @@ const Toolbar: React.FC<ToolbarProps> = (props) => {
           graph.redo();
         }
         handleCloseDrawer();
-        return;
-      case TOOLBAR_ENUM.selectAll:
-        handleSelectAll();
         return;
       case TOOLBAR_ENUM.cut:
         graph?.cut(graph?.getSelectedCells() ?? []);
@@ -288,7 +277,7 @@ const Toolbar: React.FC<ToolbarProps> = (props) => {
                         <Dropdown
                           menu={{
                             items: zoomOptions,
-                            onClick: (menu) => handleChangeZoom(Number(menu.key))
+                            onClick: (menu) => handleChangeZoom(Number(menu.key),true)
                           }}
                         >
                           <Space>
@@ -310,16 +299,19 @@ const Toolbar: React.FC<ToolbarProps> = (props) => {
                     item.options ? (
                       <Dropdown
                         key={item.key}
+                        placement="bottom"
                         menu={{
                           items: item.options,
                           onClick: (menu) => handleMenuClick(menu.key)
                         }}
                       >
-                        <Button
-                          disabled={state[item.key]}
-                          icon={(icons as any)[item.icon]}
-                          tooltip={item.label}
-                        />
+                        <span>
+                          <Button
+                            disabled={state[item.key]}
+                            icon={(icons as any)[item.icon]}
+                            tooltip={item.label}
+                          />
+                        </span>
                       </Dropdown>
                     ) : (
                       <div

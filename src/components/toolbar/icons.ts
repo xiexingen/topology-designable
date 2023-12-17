@@ -13,7 +13,6 @@ import importSvg from '@/assets/import.svg';
 import pasteSvg from '@/assets/paste.svg';
 import previewSvg from '@/assets/preview.svg';
 import redoSvg from '@/assets/redo.svg';
-import selectAllSvg from '@/assets/select-all.svg';
 import setBottomSvg from '@/assets/set-bottom.svg';
 import setTopSvg from '@/assets/set-top.svg';
 import splitSvg from '@/assets/split.svg';
@@ -40,7 +39,6 @@ export default {
   paste: pasteSvg,
   preview: previewSvg,
   redo: redoSvg,
-  selectAll: selectAllSvg,
   setBottom: setBottomSvg,
   setTop: setTopSvg,
   split: splitSvg,

@@ -16,6 +16,7 @@ import PropsPanel from '@/components/props-panel';
 import Toolbar from '@/components/toolbar';
 
 import '@/index.less'
+import { async } from '@antv/x6/lib/registry/marker/async';
 
 export type EditorProps = {
   style?: React.CSSProperties;
@@ -87,6 +88,12 @@ const Editor: React.ForwardRefRenderFunction<EditorRef, EditorProps> = (componen
     })
   }
 
+  const getJsonData = async (): Promise<Record<string,any>> => {
+    return await new Promise(resolve => {
+      resolve({})
+    })
+  }
+
   const handlePreview = async () => {
     const topoBase64Image = await getImageData();
     setTopologyBase64Image(topoBase64Image)
@@ -117,16 +124,8 @@ const Editor: React.ForwardRefRenderFunction<EditorRef, EditorProps> = (componen
   }, [])
 
   useImperativeHandle(ref, () => ({
-    getJsonData: async () => {
-      return await new Promise(resolve => {
-        resolve({})
-      })
-    },
-    getImageData: async () => {
-      return await new Promise(resolve => {
-        resolve('')
-      })
-    },
+    getJsonData,
+    getImageData,
     graph: graphInstance,
   }));
 

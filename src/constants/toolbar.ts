@@ -4,7 +4,6 @@ export const TOOLBAR_ENUM = {
   zoomOut:'zoomOut',
   undo:'undo',
   redo:'redo',
-  selectAll:'selectAll',
   cut:'cut',
   copy:'copy',
   paste:'paste',
@@ -60,12 +59,6 @@ export const TOOLBAR_OPTIONS = [
   ],
   [
     {
-      key: TOOLBAR_ENUM.selectAll,
-      visible: true,
-      label: "全选(ctrl+a)",
-      icon: "selectAll",
-    },
-    {
       key: TOOLBAR_ENUM.copy,
       visible: true,
       label: "复制(ctrl+c)",
@@ -111,14 +104,17 @@ export const TOOLBAR_OPTIONS = [
       options: [
         {
           key: "horizontalLeft",
+          visible: true,
           label: "左对齐",
         },
         {
           key: "horizontalCenter",
+          visible: true,
           label: "居中",
         },
         {
           key: "horizontalRight",
+          visible: true,
           label: "右对齐",
         },
       ],
@@ -131,14 +127,17 @@ export const TOOLBAR_OPTIONS = [
       options: [
         {
           key: "verticalTop",
+          visible: true,
           label: "顶部对齐",
         },
         {
           key: "verticalCenter",
+          visible: true,
           label: "居中",
         },
         {
           key: "verticalBottom",
+          visible: true,
           label: "底部对齐",
         },
       ],
@@ -151,10 +150,12 @@ export const TOOLBAR_OPTIONS = [
       options: [
         {
           key: "horizontalSplit",
+          visible: true,
           label: "横向均分",
         },
         {
           key: "verticalSplit",
+          visible: true,
           label: "纵向均分",
         },
       ],
@@ -175,10 +176,12 @@ export const TOOLBAR_OPTIONS = [
       options: [
         {
           key: "exportJson",
+          visible: true,
           label: "导出拓扑图",
         },
         {
           key: "exportImage",
+          visible: true,
           label: "导出图片",
         },
       ],
