@@ -2,7 +2,7 @@ import type { Topology } from '@/types/global.d';
 import type { PropsPanelProps } from '@/components/props-panel'
 import type { ToolbarProps } from '@/components/toolbar/index'
 import React, { useState, useRef, useEffect, useImperativeHandle, forwardRef } from 'react';
-import { Graph, Cell } from '@antv/x6';
+import { Graph, Cell, Model } from '@antv/x6';
 import classNames from 'classnames';
 import { Drawer, Layout } from 'antd';
 import { toPng } from 'html-to-image';
@@ -22,6 +22,7 @@ export type EditorProps = {
   style?: React.CSSProperties;
   className?: string;
   iconMap: Record<string, React.FunctionComponent>,
+  value: Model.FromJSONData,
   materials: Topology.Materials;
   materialFilterable?: boolean;
   propsPanelSchemaMap?: PropsPanelProps['schemaMap'];
@@ -40,7 +41,7 @@ export type EditorRef = {
 }>;
   getImageData(option?: Record<string,any>): Promise<string>;
   getThumbData(width?:number,height?:number): Promise<string>;
-  graph?: Graph,
+  getInstance: ()=>Graph;
 }
 
 const layoutWidth = {
@@ -119,7 +120,7 @@ const Editor: React.ForwardRefRenderFunction<EditorRef, EditorProps> = (componen
     // 创建一个 Image 对象
     const image = new Image();
     image.src = await getImageData({ quality: 0.2 });
-    const thumbData = await new Promise((resolve, reject)=> {
+    return await new Promise((resolve, reject)=> {
       // 当图像加载完成后执行回调函数
       image.onload = ()=>{
         // 创建一个 canvas 元素
@@ -137,7 +138,6 @@ const Editor: React.ForwardRefRenderFunction<EditorRef, EditorProps> = (componen
         reject(error);
       };
     });
-    return thumbData;
   }
 
   const getJsonData = async ():Promise<{
@@ -178,13 +178,22 @@ const Editor: React.ForwardRefRenderFunction<EditorRef, EditorProps> = (componen
       eventBus.off(EVENT_MAP.PREVIEW, handlePreview);
       eventBus.off(EVENT_MAP.ON_CHANGE, handleChange);
     }
-  }, [])
+  }, [handleCellRemoved,handleChangeCurrentNode,handleExport,handleImport,handlePreview,handleChange])
+
+  useEffect(()=>{
+    if(graphInstance&&props.value){
+      graphInstance.fromJSON(props.value);
+    }
+  },[
+    graphInstance,
+    props.value
+  ])
 
   useImperativeHandle(ref, () => ({
     getJsonData,
     getImageData,
     getThumbData,
-    graph: graphInstance,
+    getInstance: ()=> graphInstance,
   }));
 
   return (
@@ -229,11 +238,21 @@ const Editor: React.ForwardRefRenderFunction<EditorRef, EditorProps> = (componen
         }}
         open={!!topologyBase64Image}
       >
-        <img
-          style={{ border: '1px solid #ccc' }}
-          alt="预览"
-          src={topologyBase64Image}
-        />
+        <div
+          style={{
+            alignItems: 'center',
+            display: 'flex',
+            justifyContent: 'center'
+          }}
+        >
+          <img
+            style={{ border: '1px solid #ccc' }}
+            width={props.size.width}
+            height={props.size.height}
+            alt="预览"
+            src={topologyBase64Image}
+          />
+        </div>
       </Drawer>
     </TopologyContext.Provider>
   )

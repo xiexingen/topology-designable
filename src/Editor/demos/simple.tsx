@@ -2,10 +2,12 @@ import type { EditorRef } from '..';
 import type { Topology } from '@/types/global';
 import React, { useRef } from 'react';
 import { useSetState } from 'ahooks';
-import { message } from 'antd';
+import { Button, Space, message } from 'antd';
 import { Editor, defaultPropsSchema } from 'topology-designable';
 import { dashboard as dashboardMaterials } from '@/assets-demo/materials'
 import iconMap from '../../assets-demo/icon-map';
+// @ts-ignore
+import dashboardData from '../../assets-demo/dashboard.json';
 
 function downloadJson(json: string) {
   const a = document.createElement('a');
@@ -67,9 +69,9 @@ export default () => {
     editorInstance.graph?.fromJSON(data.graph, { silent: false });
   }
 
-  async function handlePrintSnippet() {
+  const  handlePrintSnippet=async () =>{
     const editorInstance = editorRef.current as unknown as EditorRef;
-    const graphInstance = editorInstance.graph;
+    const graphInstance = editorInstance.getInstance();
     if(!graphInstance){
       return;
     }
@@ -167,11 +169,11 @@ export default () => {
 
   return (
     <>
-    xxxx
       <Editor
-        ref={editorRef}
+        ref={editorRef as any}
         style={{ height: '100vh' }}
         materials={state.materials}
+        value={dashboardData.graph}
         iconMap={iconMap}
         // propsPanelComponents={{}}
         propsPanelSchemaMap={defaultPropsSchema}
@@ -181,6 +183,9 @@ export default () => {
         onImport={handleImport}
         onChange={handleChange}
       />
+      <Space style={{padding:8}}>
+        <Button type="primary" onClick={handlePrintSnippet}>打印代码片段</Button>
+      </Space>
     </>
   );
 };
