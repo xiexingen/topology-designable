@@ -53,10 +53,10 @@ const MaterialPanel: React.FC<IMaterialPanelProps> = (props) => {
   // 初始化物料侧边栏
   const initSideBar = () => {
     if (!sideBarRef.current) {
-      throw Error('物料面板不存在');
+      throw Error('[graph] 物料面板不存在');
     }
     if (!graph) {
-      throw Error('graph尚未初始化完成');
+      throw Error('[graph] graph尚未初始化完成');
     }
     dndRef.current = new Dnd({
       target: graph,
@@ -123,15 +123,15 @@ const MaterialPanel: React.FC<IMaterialPanelProps> = (props) => {
 
   const handleStartDrag = (e: any) => {
     if (!graph) {
-      throw Error('graph 尚未初始化')
+      throw Error('[graph] graph 尚未初始化')
     }
     if (!dndRef.current) {
-      throw Error('dnd实例尚未初始化')
+      throw Error('[graph] dnd实例尚未初始化')
     }
     const target = e.currentTarget;
     const key = target.getAttribute('data-type');
     if (!key) {
-      throw Error('拖拽节点尚未配置 data-key 属性');
+      throw Error('[graph] 拖拽节点尚未配置 data-key 属性');
     }
     const componentConfig = materialMap[key];
     const nodeConfig: Node.Metadata = {

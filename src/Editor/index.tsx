@@ -5,6 +5,7 @@ import React, { useState, useRef, useEffect, useImperativeHandle, forwardRef } f
 import { Graph, Cell } from '@antv/x6';
 import classNames from 'classnames';
 import { Drawer, Layout } from 'antd';
+import { toPng } from 'html-to-image';
 import throttle from 'lodash/throttle';
 import TopologyContext from '@/contexts/topology'
 import X6ReactPortalProvider from '@/contexts/x6-react-portal';
@@ -16,7 +17,6 @@ import PropsPanel from '@/components/props-panel';
 import Toolbar from '@/components/toolbar';
 
 import '@/index.less'
-import { async } from '@antv/x6/lib/registry/marker/async';
 
 export type EditorProps = {
   style?: React.CSSProperties;
@@ -35,8 +35,11 @@ export type EditorProps = {
 }
 
 export type EditorRef = {
-  getJsonData(): Promise<Record<string, any>>;
-  getImageData(): Promise<string>;
+  getJsonData(): Promise<{
+    cells: Cell.Properties[];
+}>;
+  getImageData(option?: Record<string,any>): Promise<string>;
+  getThumbData(width?:number,height?:number): Promise<string>;
   graph?: Graph,
 }
 
@@ -82,16 +85,70 @@ const Editor: React.ForwardRefRenderFunction<EditorRef, EditorProps> = (componen
   const handleImport = async (data: Topology.Graph) => {
     await props.onImport?.(data);
   }
-  const getImageData = async (): Promise<string> => {
-    return await new Promise(resolve => {
-      resolve('')
-    })
+
+  // 获取编辑器的预览图
+  const getImageData = async (htmlToImageOption:Record<string,any> = {}): Promise<string> => {
+    if(!graphInstance){
+      throw Error('[graph] graph 尚未实例化') ;
+    }
+    const graphSvg = graphInstance.container.querySelector('.x6-graph-svg') as HTMLElement;
+      if (!graphSvg) {
+        throw Error('[graph] 未找到画板');
+      }
+      const clonedGraphSvg = graphSvg.cloneNode(true) as HTMLElement;
+      try {
+        clonedGraphSvg
+          .querySelector('g.x6-graph-svg-viewport')
+          ?.setAttribute('transform', 'matrix(1,0,0,1,0,0)');
+          graphInstance.container.appendChild(clonedGraphSvg);
+        clonedGraphSvg.style.zIndex = '-1';
+        clonedGraphSvg.style.width = `${props.size.width}px`;
+        clonedGraphSvg.style.height = `${props.size.height}px`;
+        const imageBase64 = await toPng(clonedGraphSvg, {
+          backgroundColor: 'white',
+          ...htmlToImageOption,
+        });
+        return imageBase64;
+      } finally {
+        graphInstance.container.removeChild(clonedGraphSvg);
+      }
   }
 
-  const getJsonData = async (): Promise<Record<string,any>> => {
-    return await new Promise(resolve => {
-      resolve({})
-    })
+  // 获取编辑器的缩略图
+  async function getThumbData(width = 356, height = 140):Promise<string> {
+    // 创建一个 Image 对象
+    const image = new Image();
+    image.src = await getImageData({ quality: 0.2 });
+    const thumbData = await new Promise((resolve, reject)=> {
+      // 当图像加载完成后执行回调函数
+      image.onload = ()=>{
+        // 创建一个 canvas 元素
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) {
+          throw Error('[graph] 获取Canvas异常');
+        }
+        ctx.drawImage(image, 0, 0, width, height);
+        resolve(canvas.toDataURL());
+      };
+      image.onerror = (error)=>{
+        reject(error);
+      };
+    });
+    return thumbData;
+  }
+
+  const getJsonData = async ():Promise<{
+    cells: Cell.Properties[];
+  }> => {
+    if(!graphInstance){
+      throw Error('[graph] graph 尚未实例化') ;
+    }
+    return new Promise((resolve) => {
+      resolve(graphInstance.toJSON());
+    });
   }
 
   const handlePreview = async () => {
@@ -126,6 +183,7 @@ const Editor: React.ForwardRefRenderFunction<EditorRef, EditorProps> = (componen
   useImperativeHandle(ref, () => ({
     getJsonData,
     getImageData,
+    getThumbData,
     graph: graphInstance,
   }));
 

@@ -61,7 +61,7 @@ export default () => {
   }
   const handleImport = async (data: Topology.Graph) => {
     if (!data?.graph) {
-      throw Error('导入的数据格式有误');
+      throw Error('[graph] 导入的数据格式有误');
     }
     const editorInstance = editorRef.current as unknown as EditorRef;
     editorInstance.graph?.fromJSON(data.graph, { silent: false });
@@ -75,7 +75,7 @@ export default () => {
     }
     const selectedCells = graphInstance.getSelectedCells();
     if (Array.isArray(selectedCells) && selectedCells.length !== 1) {
-      messageApi.error('仅支持选中一个导出节点');
+      messageApi.error('[graph] 仅支持选中一个导出节点');
       return;
     }
     const selectedContainer = selectedCells[0] as any;
@@ -157,7 +157,7 @@ export default () => {
       console.info('-------------代码片段配置 end----------------');
       return;
     }
-    messageApi.error('至少包含一个子节点');
+    messageApi.error('[graph] 至少包含一个子节点');
   }
 
   const handleChange = (value: any) => {

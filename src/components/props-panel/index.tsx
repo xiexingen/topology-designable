@@ -58,7 +58,7 @@ function getNodeComponentProps(node: Cell) {
     const nodeData = node.getData();
     nodeComponentProps = nodeData.componentProps;
   } else {
-    throw Error(`未实现的节点类型:${JSON.stringify(node)}`);
+    throw Error(`[graph] 未实现的节点类型:${JSON.stringify(node)}`);
   }
   return nodeComponentProps;
 }
