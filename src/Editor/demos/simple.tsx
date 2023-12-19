@@ -1,13 +1,11 @@
 import type { EditorRef } from '..';
 import type { Topology } from '@/types/global';
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useSetState } from 'ahooks';
 import { Button, Space, message } from 'antd';
 import { Editor, defaultPropsSchema } from 'topology-designable';
 import { dashboard as dashboardMaterials } from '@/assets-demo/materials'
 import iconMap from '../../assets-demo/icon-map';
-// @ts-ignore
-import dashboardData from '../../assets-demo/dashboard.json';
 
 function downloadJson(json: string) {
   const a = document.createElement('a');
@@ -27,12 +25,13 @@ function downloadImage(base64Image: string) {
 export default () => {
   const editorRef = useRef()
   const [messageApi] = message.useMessage();
-  const [state] = useSetState({
+  const [state, setState] = useSetState({
     size: {
       height: 666,
       width: 1888,
     },
-    materials: dashboardMaterials
+    materials: dashboardMaterials,
+    value: undefined,
   })
 
   const handleExport = async (type: 'json' | 'image') => {
@@ -66,7 +65,7 @@ export default () => {
       throw Error('[graph] 导入的数据格式有误');
     }
     const editorInstance = editorRef.current as unknown as EditorRef;
-    editorInstance.graph?.fromJSON(data.graph, { silent: false });
+    editorInstance.getInstance()?.fromJSON(data.graph, { silent: false });
   }
 
   const  handlePrintSnippet=async () =>{
@@ -167,13 +166,21 @@ export default () => {
     console.log('editor change', value);
   }
 
+  // 模拟加载后端接口数据
+  useEffect(()=>{
+    const dashboardData = require('../../assets-demo/dashboard.json');
+    setState({
+      value: dashboardData['graph']
+    })
+  },[ ])
+
   return (
     <>
       <Editor
         ref={editorRef as any}
         style={{ height: '100vh' }}
         materials={state.materials}
-        value={dashboardData.graph}
+        value={state.value}
         iconMap={iconMap}
         // propsPanelComponents={{}}
         propsPanelSchemaMap={defaultPropsSchema}

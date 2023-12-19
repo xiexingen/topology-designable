@@ -19,16 +19,16 @@ import Toolbar from '@/components/toolbar';
 import '@/index.less'
 
 export type EditorProps = {
-  style?: React.CSSProperties;
-  className?: string;
   iconMap: Record<string, React.FunctionComponent>,
-  value: Model.FromJSONData,
   materials: Topology.Materials;
   materialFilterable?: boolean;
+  style?: React.CSSProperties;
+  className?: string;
+  value?: Model.FromJSONData,
   propsPanelSchemaMap?: PropsPanelProps['schemaMap'];
   propsPanelComponents?: PropsPanelProps['components'];
   propsPanelScope?: PropsPanelProps['scope'];
-  size: Topology.Size;
+  size?: Topology.Size;
   toolbar?: ToolbarProps['toolbar'];
   onImport?: (data: Topology.Graph) => Promise<void>;
   onExport?: (type: 'json' | 'image') => Promise<void>;
@@ -181,8 +181,13 @@ const Editor: React.ForwardRefRenderFunction<EditorRef, EditorProps> = (componen
   }, [handleCellRemoved,handleChangeCurrentNode,handleExport,handleImport,handlePreview,handleChange])
 
   useEffect(()=>{
-    if(graphInstance&&props.value){
-      graphInstance.fromJSON(props.value);
+    if(graphInstance){
+      if(props.value){
+        graphInstance.fromJSON(props.value);
+      }
+      else {
+        graphInstance.clearCells();
+      }
     }
   },[
     graphInstance,
@@ -193,7 +198,7 @@ const Editor: React.ForwardRefRenderFunction<EditorRef, EditorProps> = (componen
     getJsonData,
     getImageData,
     getThumbData,
-    getInstance: ()=> graphInstance,
+    getInstance: ()=> graphInstance as Graph,
   }));
 
   return (

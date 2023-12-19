@@ -13,12 +13,25 @@ order: 10
 
 <code src="./demos/simple.tsx"></code>
 
-
 ## API
 
-| 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| tooltip | 移动到文本展示完整内容的提示 | boolean | - |
-| length | 在按照长度截取下的文本最大字符数，超过则截取省略(与`lines`存在一个即可) | number | - |
-| lines | 在按照行数截取下最大的行数，超过则截取省略(与`length`存在一个即可) | number | `1` |
-| fullWidthRecognition | 是否将全角字符的长度视为 2 来计算字符串长度 | boolean | - |
+| 参数                 | 说明                                                    | 类型                                      | 默认值                   |
+| -------------------- | ------------------------------------------------------- | ----------------------------------------- | ------------------------ | --- |
+| iconMap              | 图标映射配置                                            | `Record<string, React.FunctionComponent>` | `{}`                     |
+| materials            | 物料面板配置,详情请查看                                 | `Topology.Materials`                      | -                        |
+| materialFilterable   | 物料面板是否可搜索                                      | `boolean`                                 | `false`                  |
+| value                | 实际值                                                  | `Object`                                  | -                        |
+| propsPanelSchemaMap  | 属性面板动态表单配置，请查看 formily 的 schema 配置     | `Object`                                  | -                        |
+| propsPanelComponents | 属性面板动态组件配置，请查看 formily 的 components 配置 | `Object`                                  | -                        |
+| size                 | 画布尺寸                                                | SizeOption                                | {height: 666,width:1888} |
+| toolbar              | 顶部工具栏配置                                          | `false`                                   | `Object`                 | -   |
+| onImport             | 导入方法                                                | `Function`                                | -                        |
+| onExport             | 导出方法                                                | `Function`                                | -                        |
+| onChange             | 画板内容改变时触发的方法                                | `Function`                                | -                        |
+
+### SizeOption
+
+| 参数   | 说明 | 类型   | 默认值 |
+| ------ | ---- | ------ | ------ |
+| height | 高度 | number | 666    |
+| width  | 宽度 | number | 1888   |
