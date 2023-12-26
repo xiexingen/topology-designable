@@ -16,7 +16,7 @@ order: 10
 ## API
 
 | 参数                 | 说明                                                    | 类型                                      | 默认值                   |
-| -------------------- | ------------------------------------------------------- | ----------------------------------------- | ------------------------ | --- |
+| -------------------- | ------------------------------------------------------- | ----------------------------------------- | ------------------------ |
 | iconMap              | 图标映射配置                                            | `Record<string, React.FunctionComponent>` | `{}`                     |
 | materials            | 物料面板配置,详情请查看                                 | `Topology.Materials`                      | -                        |
 | materialFilterable   | 物料面板是否可搜索                                      | `boolean`                                 | `false`                  |
@@ -24,7 +24,7 @@ order: 10
 | propsPanelSchemaMap  | 属性面板动态表单配置，请查看 formily 的 schema 配置     | `Object`                                  | -                        |
 | propsPanelComponents | 属性面板动态组件配置，请查看 formily 的 components 配置 | `Object`                                  | -                        |
 | size                 | 画布尺寸                                                | SizeOption                                | {height: 666,width:1888} |
-| toolbar              | 顶部工具栏配置                                          | `false`                                   | `Object`                 | -   |
+| toolbar              | 顶部工具栏配置                                          | `false`                                   | `Object`                 |
 | onImport             | 导入方法                                                | `Function`                                | -                        |
 | onExport             | 导出方法                                                | `Function`                                | -                        |
 | onChange             | 画板内容改变时触发的方法                                | `Function`                                | -                        |

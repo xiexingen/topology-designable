@@ -81,13 +81,18 @@
     }
   }
 
-  &-content {
+  .topology-designable-content {
     border: 1px solid #ccc;
-    .content-section {
+    .canvas {
       height: 100%;
+      position: relative;
 
-      .canvas {
-        height: 100%;
+      .preview-zoom {
+        position: absolute;
+        background: transparent;
+        z-index: 1;
+        opacity: 0.4;
+        padding: 4px;
       }
     }
   }

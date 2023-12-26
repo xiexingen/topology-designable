@@ -216,11 +216,11 @@ const Editor: React.ForwardRefRenderFunction<EditorRef, EditorProps> = (componen
             filterable={props.materialFilterable}
           />
         </Layout.Sider>
-        <Layout className='topology-designable-content'>
-          <Layout.Content style={{ overflow: 'initial' }} className="content-section">
+        <Layout className='topology-designable-content-layout'>
+          <Layout.Content style={{ overflow: 'initial' }} className="topology-designable-content">
             <Toolbar toolbar={props.toolbar} />
             <div className="canvas">
-              <div className="topo-editor" ref={graphContainerRef}></div>
+              <div className="editor" ref={graphContainerRef}></div>
             </div>
           </Layout.Content>
         </Layout>

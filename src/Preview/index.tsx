@@ -1,14 +1,16 @@
-import type { Topology } from '@/types/global.d';
-import React, { useRef, useEffect, useImperativeHandle, forwardRef } from 'react';
+import React, { useRef, useEffect, useImperativeHandle, forwardRef, useState } from 'react';
 import { Graph, Model } from '@antv/x6';
+import { useSize } from 'ahooks';
 import classNames from 'classnames';
-import { Layout } from 'antd';
+import { Button, Layout, Space } from 'antd';
+import { PlusOutlined,MinusOutlined, } from '@ant-design/icons';
 import TopologyContext from '@/contexts/topology'
 import X6ReactPortalProvider from '@/contexts/x6-react-portal';
 import useGraph from '@/hooks/useGraph'
 
+
 import '@/index.less'
-import { useSize } from 'ahooks';
+import { GRAPH_ZOOM } from '@/constants';
 
 export type EditorProps = {
   iconMap: Record<string, React.FunctionComponent>,
@@ -23,6 +25,7 @@ export type EditorRef = {
 
 const Editor: React.ForwardRefRenderFunction<EditorRef, EditorProps> = (props, ref) => {
   const graphContainerRef = useRef<any>()
+  const [zoom,setZoom] =useState(1)
   const graphContainerSize = useSize(graphContainerRef);
 
   const [graphInstance] = useGraph(graphContainerRef, {
@@ -33,7 +36,7 @@ const Editor: React.ForwardRefRenderFunction<EditorRef, EditorProps> = (props, r
       grid: false,
       embedding: false,
       interacting: false,
-      panning: false,
+      panning: true,
     },
     pluginOption: {
       transform: false,
@@ -71,9 +74,36 @@ const Editor: React.ForwardRefRenderFunction<EditorRef, EditorProps> = (props, r
     props.value,
   ])
 
+  useEffect(()=>{
+    if(!graphInstance){
+      return;
+    }
+    graphInstance.on("scale", () => {
+      const zoom = graphInstance.zoom();
+      console.log('scale',zoom)
+      let zoomValue = Math.min(zoom,GRAPH_ZOOM.max)
+      zoomValue= Math.max(zoomValue,GRAPH_ZOOM.min)
+      setZoom(Math.max(zoomValue))
+    });
+  },[graphInstance])
+
   useImperativeHandle(ref, () => ({
     getInstance: () => graphInstance as Graph,
   }));
+
+
+  const handleChangeZoom = (zoom: number,absolute=false) => {
+    if(!graphInstance) {
+      return;
+    }
+    graphInstance.zoom(zoom, {
+      minScale: GRAPH_ZOOM.min,
+      maxScale: GRAPH_ZOOM.max,
+      absolute,
+    });
+  };
+
+  const zoomText = Math.floor(zoom * 100) + '%';
 
   return (
     <TopologyContext.Provider value={{
@@ -82,9 +112,16 @@ const Editor: React.ForwardRefRenderFunction<EditorRef, EditorProps> = (props, r
     }}>
       <X6ReactPortalProvider />
       <Layout style={props.style} className={classNames("topology-designable", props.className)}>
-        <Layout.Content style={{ overflow: 'initial' }} className="content-section">
+        <Layout.Content style={{ overflow: 'initial' }} className="topology-designable-content">
           <div className="canvas" style={{ width: '100%', height: '100%' }}>
-            <div className="topo-editor topo-editor-preview" style={{ height: '100%' }} ref={graphContainerRef}></div>
+            <div className='preview-zoom'>
+            <Space.Compact size="small" block>
+              <Button icon={<MinusOutlined/>} onClick={()=>handleChangeZoom(-0.1)} />
+              <Button title='重置到100%' onClick={()=>handleChangeZoom(1,true)}>{zoomText}</Button>
+              <Button icon={<PlusOutlined/>} onClick={()=>handleChangeZoom(0.1)} />
+            </Space.Compact>
+            </div>
+            <div className="editor editor-preview" style={{ height: '100%' }} ref={graphContainerRef}></div>
           </div>
         </Layout.Content>
       </Layout>
