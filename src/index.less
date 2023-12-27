@@ -1,4 +1,5 @@
 .topology-designable {
+  border: 1px solid #d9d9d9;
   // 解决 safiri 浏览器下 forgetObject下 body position 为 static的问题
   .safiri {
     foreignObject {
@@ -20,7 +21,18 @@
   &-material-panel {
     position: relative;
     height: 100%;
-    border: 1px solid #e6e6e6;
+
+    .ant-collapse {
+      border:none;
+      border-radius:0;
+
+      .ant-collapse-item {
+        border-bottom:none;
+        .ant-collapse-header {
+          padding:8px 16px;
+        }
+      }
+    }
 
     .material-list {
       padding: 4px;
@@ -82,10 +94,98 @@
   }
 
   .topology-designable-content {
-    border: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-height: 100%;
+    border: 1px solid #d9d9d9;
+    border-top:none;
+    border-top:none;
+
+    .toolbar {
+      background-color: #fff;
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 7px 8px;
+      border-bottom: 1px solid #e6e6e6;
+      flex: 0 0 auto;
+
+      .toolbar-group-item {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .toolbar-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 24px;
+        text-align: center;
+        line-height: 24px;
+        height: 24px;
+        border-radius: 4px;
+        transition-property: background-color, color;
+        transition-duration: 0.3s;
+        cursor: pointer;
+        color: #f1f1f1;
+
+        &.disabled {
+          cursor: not-allowed;
+          filter: invert(100%);
+        }
+
+        &:not(.disabled):hover {
+          background-color: #f2f3f5;
+          color: #333;
+        }
+      }
+
+      .toolbar-help {
+        color: inherit;
+        margin-left: auto;
+      }
+
+      .zoom-select {
+        font-size: 12px;
+        width: 80px;
+        display: flex;
+        padding: 0 8px;
+        align-items: center;
+        justify-content: space-between;
+        height: 24px;
+        transition-property: background-color, color;
+        transition-duration: 0.3s;
+        border-radius: 4px;
+
+        &:hover {
+          background-color: #f2f3f5;
+          color: #333;
+        }
+      }
+
+      .toolbar-icon {
+        font-size: 14px;
+      }
+
+      .q-dropdown {
+        font-size: none;
+      }
+
+      .help {
+        .short-key {
+          margin-left: 8px;
+        }
+      }
+    }
+
     .canvas {
       height: 100%;
       position: relative;
+      flex: 1 1 auto;
+      overflow:hidden;
 
       .preview-zoom {
         position: absolute;
@@ -97,83 +197,6 @@
     }
   }
 
-  .toolbar {
-    background-color: #fff;
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    padding: 7px 8px;
-    border-bottom: 1px solid #e6e6e6;
-
-    .toolbar-group-item {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .toolbar-item {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 24px;
-      text-align: center;
-      line-height: 24px;
-      height: 24px;
-      border-radius: 4px;
-      transition-property: background-color, color;
-      transition-duration: 0.3s;
-      cursor: pointer;
-      color: #f1f1f1;
-
-      &.disabled {
-        cursor: not-allowed;
-        filter: invert(100%);
-      }
-
-      &:not(.disabled):hover {
-        background-color: #f2f3f5;
-        color: #333;
-      }
-    }
-
-    .toolbar-help {
-      color: inherit;
-      margin-left: auto;
-    }
-
-    .zoom-select {
-      font-size: 12px;
-      width: 80px;
-      display: flex;
-      padding: 0 8px;
-      align-items: center;
-      justify-content: space-between;
-      height: 24px;
-      transition-property: background-color, color;
-      transition-duration: 0.3s;
-      border-radius: 4px;
-
-      &:hover {
-        background-color: #f2f3f5;
-        color: #333;
-      }
-    }
-
-    .toolbar-icon {
-      font-size: 14px;
-    }
-
-    .q-dropdown {
-      font-size: none;
-    }
-
-    .help {
-      .short-key {
-        margin-left: 8px;
-      }
-    }
-  }
 
   &-props-panel {
     height: 100%;
@@ -183,6 +206,10 @@
   .topology-designable-scoller {
     height: 100% !important;
     overflow: auto;
+
+    &.x6-graph-scroller.x6-graph-scroller-pannable {
+      cursor:auto;
+    }
 
     .x6-graph-pagebreak-vertical,
     .x6-graph-pagebreak-horizontal {
@@ -199,6 +226,9 @@
   }
 
   &.topology-designable-preview {
+    .topology-designable-content{
+      border: none;
+    }
     .topology-designable-scoller {
       height: 100% !important;
       width: 100% !important;
@@ -378,16 +408,22 @@
   }
 }
 
-/* 隐藏默认滚动条 */
-.topology-designable ::-webkit-scrollbar {
-  display: none;
-}
+// /* 隐藏默认滚动条 */
+// .topology-designable ::-webkit-scrollbar {
+//   display: none;
+// }
 
-/* 当鼠标悬停在容器上时显示滚动条 */
-.topology-designable :hover::-webkit-scrollbar {
-  display: block;
-  width: 12px;
-  height: 12px;
+// /* 当鼠标悬停在容器上时显示滚动条 */
+// .topology-designable :hover::-webkit-scrollbar {
+//   display: block;
+//   width: 12px;
+//   height: 12px;
+// }
+
+.topology-designable ::-webkit-scrollbar {
+  display:block;
+  width: 14px;
+  height: 14px;
 }
 
 /* 定义滚动条样式 */

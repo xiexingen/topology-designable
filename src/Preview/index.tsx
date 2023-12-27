@@ -3,7 +3,7 @@ import { Graph, Model } from '@antv/x6';
 import { useSize } from 'ahooks';
 import classNames from 'classnames';
 import { Button, Layout, Space } from 'antd';
-import { PlusOutlined,MinusOutlined, } from '@ant-design/icons';
+import { PlusOutlined, MinusOutlined, } from '@ant-design/icons';
 import TopologyContext from '@/contexts/topology'
 import X6ReactPortalProvider from '@/contexts/x6-react-portal';
 import useGraph from '@/hooks/useGraph'
@@ -25,7 +25,7 @@ export type EditorRef = {
 
 const Editor: React.ForwardRefRenderFunction<EditorRef, EditorProps> = (props, ref) => {
   const graphContainerRef = useRef<any>()
-  const [zoom,setZoom] =useState(1)
+  const [zoom, setZoom] = useState(1)
   const graphContainerSize = useSize(graphContainerRef);
 
   const [graphInstance] = useGraph(graphContainerRef, {
@@ -51,14 +51,23 @@ const Editor: React.ForwardRefRenderFunction<EditorRef, EditorProps> = (props, r
     graphEvent: false,
   })
 
-  useEffect(()=>{
+  const handleZoomToFit = ()=>{
+    if(!graphInstance){
+      return;
+    }
+    graphInstance.zoomToFit({
+      padding: 2,
+    });
+  }
+
+  useEffect(() => {
     if (graphInstance) {
-      graphInstance.resize(graphContainerSize?.width,graphContainerSize?.height);
+      graphInstance.resize(graphContainerSize?.width, graphContainerSize?.height);
       graphInstance.zoomToFit({
-        padding: 0,
+        padding: 2,
       });
     }
-  },[graphInstance,graphContainerSize])
+  }, [graphInstance, graphContainerSize])
 
   useEffect(() => {
     if (graphInstance) {
@@ -74,26 +83,25 @@ const Editor: React.ForwardRefRenderFunction<EditorRef, EditorProps> = (props, r
     props.value,
   ])
 
-  useEffect(()=>{
-    if(!graphInstance){
+  useEffect(() => {
+    if (!graphInstance) {
       return;
     }
     graphInstance.on("scale", () => {
       const zoom = graphInstance.zoom();
-      console.log('scale',zoom)
-      let zoomValue = Math.min(zoom,GRAPH_ZOOM.max)
-      zoomValue= Math.max(zoomValue,GRAPH_ZOOM.min)
+      let zoomValue = Math.min(zoom, GRAPH_ZOOM.max)
+      zoomValue = Math.max(zoomValue, GRAPH_ZOOM.min)
       setZoom(Math.max(zoomValue))
     });
-  },[graphInstance])
+  }, [graphInstance])
 
   useImperativeHandle(ref, () => ({
     getInstance: () => graphInstance as Graph,
   }));
 
 
-  const handleChangeZoom = (zoom: number,absolute=false) => {
-    if(!graphInstance) {
+  const handleChangeZoom = (zoom: number, absolute = false) => {
+    if (!graphInstance) {
       return;
     }
     graphInstance.zoom(zoom, {
@@ -111,15 +119,19 @@ const Editor: React.ForwardRefRenderFunction<EditorRef, EditorProps> = (props, r
       iconMap: props.iconMap
     }}>
       <X6ReactPortalProvider />
-      <Layout style={props.style} className={classNames("topology-designable", props.className)}>
+      <Layout style={props.style} className={classNames("topology-designable","topology-designable-preview", props.className)}>
         <Layout.Content style={{ overflow: 'initial' }} className="topology-designable-content">
           <div className="canvas" style={{ width: '100%', height: '100%' }}>
             <div className='preview-zoom'>
-            <Space.Compact size="small" block>
-              <Button icon={<MinusOutlined/>} onClick={()=>handleChangeZoom(-0.1)} />
-              <Button title='重置到100%' onClick={()=>handleChangeZoom(1,true)}>{zoomText}</Button>
-              <Button icon={<PlusOutlined/>} onClick={()=>handleChangeZoom(0.1)} />
-            </Space.Compact>
+              <Space.Compact size="small" block>
+                <Button icon={<MinusOutlined />} onClick={() => handleChangeZoom(-0.1)} />
+                <Button
+                  title={`单击切换到自适应\n双击切换到100%`}
+                  onClick={handleZoomToFit}
+                  onDoubleClick={()=> handleChangeZoom(1, true)}
+                >{zoomText}</Button>
+                <Button icon={<PlusOutlined />} onClick={() => handleChangeZoom(0.1)} />
+              </Space.Compact>
             </div>
             <div className="editor editor-preview" style={{ height: '100%' }} ref={graphContainerRef}></div>
           </div>
