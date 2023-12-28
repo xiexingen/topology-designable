@@ -71,12 +71,12 @@ export default () => {
   }
 
   // 模拟加载后端接口数据
-  useEffect(()=>{
+  useEffect(() => {
     const dashboardData = require('../../assets-demo/dashboard.json');
     setState({
       value: dashboardData['graph']
     })
-  },[ ])
+  }, [])
 
   return (
     <Editor
