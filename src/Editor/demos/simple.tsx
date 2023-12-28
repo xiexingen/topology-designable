@@ -1,8 +1,6 @@
-import type { EditorRef } from '..';
-import type { Topology } from '@/types/global';
+import type { Topology } from 'topology-designable';
 import React, { useEffect, useRef } from 'react';
 import { useSetState } from 'ahooks';
-import { Button, Space, message } from 'antd';
 import { Editor, defaultPropsSchema } from 'topology-designable';
 import { dashboard as dashboardMaterials } from '@/assets-demo/materials'
 import iconMap from '../../assets-demo/icon-map';
@@ -24,7 +22,6 @@ function downloadImage(base64Image: string) {
 
 export default () => {
   const editorRef = useRef()
-  const [messageApi] = message.useMessage();
   const [state, setState] = useSetState({
     size: {
       height: 666,
