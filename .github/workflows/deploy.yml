@@ -42,7 +42,7 @@ jobs:
         run: npm run docs:build
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          publish_dir: ./dist
+      uses: JamesIves/github-pages-deploy-action@v4.2.2
+      with:
+        branch: gh-pages
+        folder: dist
