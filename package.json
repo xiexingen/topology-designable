@@ -1,6 +1,6 @@
 {
   "name": "topology-designable",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "topology designable ",
   "license": "MIT",
   "module": "dist/index.js",
