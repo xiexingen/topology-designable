@@ -1,34 +1,34 @@
-name: Deploy CI
+name: Deploy Pages
 
 on:
   push:
     branches:
-      - main
+      - master # 这里只配置了master分支，所以只有推送master分支才会触发以下任务
 
 jobs:
-  build-and-deploy:
+  pages:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@master
+      - uses: actions/checkout@v2
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v2
         with:
-          node-version: 16
-          registry-url: 'https://registry.npmjs.org'
-      # - name: authority npm
-      #   run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
-      - name: Install
+          node-version: "16.x"
+      - name: Cache NPM dependencies
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-npm-cache
+          restore-keys: |
+            ${{ runner.OS }}-npm-cache
+      - name: Install Dependencies
         run: npm install
-
-      - name: Docs Build
-        env:
-          CI: true
-          GA_KEY: G-RMBLDHGL1N
-          PROGRESS: none
-          SITE_DEPLOY: 'TRUE'
+      - name: Build
         run: npm run docs:build
-
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4.2.2
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          branch: gh-pages
-          folder: docs-dist
+          github_token: ${{ secrets.GH_TOKEN }}
+          publish_dir: ./docs-dist
