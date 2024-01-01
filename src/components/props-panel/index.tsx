@@ -13,6 +13,7 @@ import reduce from 'lodash/reduce';
 import cloneDeep from 'lodash/cloneDeep'
 import TopologyContext from '@/contexts/topology'
 import IconSelect from '@/components/props-panel/icon-select'
+import ColorPicker from './color-picker'
 
 
 export type PropsPanelProps = {
@@ -52,6 +53,7 @@ const defaultComponents = {
   Transfer,
   TreeSelect,
   IconSelect,
+  ColorPicker,
 }
 const EDGE_PROP_KEYS = ['attrs', 'router', 'connector'];
 
