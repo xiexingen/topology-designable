@@ -29,17 +29,69 @@ export const ICON_NAMES={
 }
 
 export default {
-  [ICON_NAMES.bank]:bank,
-  [ICON_NAMES.chinaMobile]:chinaMobile,
-  [ICON_NAMES.chinaUnicom]:chinaUnicom,
-  [ICON_NAMES.cloud]:cloud,
-  [ICON_NAMES.databaseAudit]:databaseAudit,
-  [ICON_NAMES.ddos]:ddos,
-  [ICON_NAMES.firewallIp]:firewallIp,
-  [ICON_NAMES.firewall]:firewall,
-  [ICON_NAMES.government]:government,
-  [ICON_NAMES.internet]:internet,
-  [ICON_NAMES.police]:police,
-  [ICON_NAMES.switch]:switchIcon,
-  [ICON_NAMES.web]:web,
+  [ICON_NAMES.bank]: {
+    label:'银行',
+    value: ICON_NAMES.bank,
+    icon:bank
+  },
+  [ICON_NAMES.chinaMobile]:{
+    label:'移动专线',
+    value: ICON_NAMES.chinaMobile,
+    icon:chinaMobile
+  },
+  [ICON_NAMES.chinaUnicom]:{
+    label:'联通专线',
+    value: ICON_NAMES.chinaUnicom,
+    icon:chinaUnicom
+  },
+  [ICON_NAMES.cloud]:{
+    label:'云平台',
+    value: ICON_NAMES.cloud,
+    icon:cloud
+  },
+  [ICON_NAMES.databaseAudit]:{
+    label:'数据库审计',
+    value: ICON_NAMES.databaseAudit,
+    icon:databaseAudit
+  },
+  [ICON_NAMES.ddos]:{
+    label:'抗DDOS攻击',
+    value: ICON_NAMES.ddos,
+    icon:ddos
+  },
+  [ICON_NAMES.firewallIp]:{
+    label:'IP封禁',
+    value: ICON_NAMES.firewallIp,
+    icon:firewallIp
+  },
+  [ICON_NAMES.firewall]:{
+    label:'防火墙',
+    value: ICON_NAMES.firewall,
+    icon:firewall
+  },
+  [ICON_NAMES.government]:{
+    label:'银行',
+    value: ICON_NAMES.government,
+    icon:government
+  },
+  [ICON_NAMES.internet]:{
+    label:'互联网',
+    value: ICON_NAMES.internet,
+    icon:internet
+  },
+  [ICON_NAMES.police]:{
+    label:'公安',
+    value: ICON_NAMES.police,
+    icon:police
+  },
+  [ICON_NAMES.switch]:{
+    label:'交换机',
+    value: ICON_NAMES.switch,
+    icon: switchIcon
+  },
+  [ICON_NAMES.web]:{
+    label:'Web应用',
+    value: ICON_NAMES.web,
+    icon:web
+  },
 }

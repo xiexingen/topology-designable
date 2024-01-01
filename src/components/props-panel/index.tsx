@@ -1,6 +1,7 @@
 import type { Cell } from '@antv/x6';
+import type { Topology } from '@/types/global';
 import type { ISchema, SchemaReactComponents } from '@formily/react'
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Card } from 'antd';
 import { createForm, onFieldInputValueChange } from '@formily/core'
 import { createSchemaField } from '@formily/react'
@@ -8,7 +9,11 @@ import { Form, FormItem, Input, Select, NumberPicker, Checkbox, Radio, Cascader,
 import pick from 'lodash/pick';
 import get from 'lodash/get';
 import set from 'lodash/set';
+import reduce from 'lodash/reduce';
 import cloneDeep from 'lodash/cloneDeep'
+import TopologyContext from '@/contexts/topology'
+import IconSelect from '@/components/props-panel/icon-select'
+
 
 export type PropsPanelProps = {
   node: Cell | null;
@@ -46,6 +51,7 @@ const defaultComponents = {
   TimePicker,
   Transfer,
   TreeSelect,
+  IconSelect,
 }
 const EDGE_PROP_KEYS = ['attrs', 'router', 'connector'];
 
@@ -62,10 +68,12 @@ function getNodeComponentProps(node: Cell) {
   }
   return nodeComponentProps;
 }
-
 const PropsPanel: React.FC<PropsPanelProps> = (props) => {
   const [title, setTitle] = useState('-');
   const [schema, setSchema] = useState({});
+  const [deviceIcons, setDeviceIcons] = useState<Topology.TopologyIconProp[]>([]);
+
+  const { iconMap = {} } = useContext(TopologyContext);
 
   const form = createForm({
     effects() {
@@ -79,7 +87,7 @@ const PropsPanel: React.FC<PropsPanelProps> = (props) => {
         // 查询出节点上配置的属性数据
         const nodeComponentProps: Record<string, any> = getNodeComponentProps(props.node);
         const pathName = field.path.toString()
-        const preValue = get(nodeComponentProps,pathName)
+        const preValue = get(nodeComponentProps, pathName)
         if (inputValue === preValue) {
           return;
         }
@@ -88,11 +96,11 @@ const PropsPanel: React.FC<PropsPanelProps> = (props) => {
           props.node.prop(newProps);
         } else if (props.node.isNode()) {
           props.node.setData({
-            componentProps:{
+            componentProps: {
               ...nodeComponentProps,
               [pathName]: inputValue,
             }
-          },{ deep:false });
+          }, { deep: false });
         }
       })
     },
@@ -118,15 +126,48 @@ const PropsPanel: React.FC<PropsPanelProps> = (props) => {
     setSchema(tempSchema || {});
   }, [props.node])
 
-  useEffect(()=>{
+  useEffect(() => {
     handleNodeChange(props.node)
-  },[schema,form,props.node])
+  }, [schema, form, props.node])
+
+  useEffect(() => {
+    const result = reduce(iconMap, (result, cur) => {
+      result.push(cur)
+      return result;
+    }, [] as Topology.TopologyIconProp[])
+    setDeviceIcons(result)
+  }, [iconMap])
+
+  // const loadDeviceIcons = async () => {
+  //   return new Promise((resolve) => {
+  //     const result = reduce(iconMap, (result, cur) => {
+  //       result.push(cur)
+  //       return result;
+  //     }, [] as Topology.TopologyIconProp[])
+  //     resolve(result)
+  //   })
+  // }
+
+  // const useAsyncDataSource = (service) => (field) => {
+  //   field.loading = true
+  //   service(field).then(
+  //     action?.bound?.((data) => {
+  //       field.dataSource = data
+  //       field.loading = false
+  //     })
+  //   )
+  // }
 
   return (
     <Card size="small" title={title} rootClassName='topology-designable-props-panel'>
       <Form feedbackLayout="popover" form={form} layout="vertical" colon={false}>
         <SchemaField
-          scope={props.scope}
+          scope={{
+            ...props.scope,
+            // useAsyncDataSource,
+            // loadDeviceIcons,
+            deviceIcons,
+          }}
           components={{
             ...defaultComponents,
             ...props.components

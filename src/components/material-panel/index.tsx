@@ -13,7 +13,7 @@ import MaterialNode from './material-node'
 
 interface IMaterialPanelProps {
   filterable?: boolean;
-  iconMap: { [key: string]: any };
+  iconMap: { [key: string]: Topology.TopologyIconProp };
   materials: Topology.Materials
 }
 
@@ -156,7 +156,7 @@ const MaterialPanel: React.FC<IMaterialPanelProps> = (props) => {
         return (
           <MaterialNode
             key={`${collapseGroup.name}-${item.id}`}
-            icon={typeof item.icon === 'string' ? props.iconMap[item.icon] : item.icon}
+            icon={typeof item.icon === 'string' ? props.iconMap[item.icon]?.value : item.icon}
             prefix={collapseGroup.name}
             material={item}
             onMouseDown={handleStartDrag}
@@ -212,7 +212,7 @@ const MaterialPanel: React.FC<IMaterialPanelProps> = (props) => {
                 return (
                   <MaterialNode
                     key={item.id}
-                    icon={typeof item.icon === 'string' ? props.iconMap[item.icon] : item.icon}
+                    icon={typeof item.icon === 'string' ? props.iconMap[item.icon]?.value : item.icon}
                     material={item}
                     onMouseDown={handleStartDrag}
                   />

@@ -159,4 +159,9 @@ export namespace Topology {
     height:number;
     width:number;
   }
+  export type TopologyIconProp={
+    label: string,
+    value: string,
+    icon: React.FunctionComponent<React.SVGAttributes<SVGElement>>
+  }
 }

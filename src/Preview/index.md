@@ -17,6 +17,6 @@ order: 20
 
 | 参数      | 说明                                     | 类型       | 默认值                   |
 | --------- | ---------------------------------------- | ---------- | ------------------------ |
-| iconMap   | 图标配置,如: { 'bank': BankIconSvg }     | `Object`     | -                        |
+| iconMap   | 图标配置,如: { 'bank': Topology.TopologyIconProp }     | `Object`     | -                        |
 | value     | 实际值                                   | `Object`     | -                        |
 
