@@ -3,7 +3,7 @@ name: Deploy Pages
 on:
   push:
     branches:
-      - master # 这里只配置了master分支，所以只有推送master分支才会触发以下任务
+      - main
 
 jobs:
   pages:
