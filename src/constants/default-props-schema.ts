@@ -1,4 +1,4 @@
-import { LINE_MARKER_OPTIONS,EDGE_ROUTER_ENUM, EDGE_CONNECTOR_ENUM } from './index'
+import { LINE_MARKER_OPTIONS,EDGE_ROUTER_ENUM } from './index'
 
 const BACKGROUND_OPTIONS = [
   { label: "白色", value: "white" },
@@ -26,6 +26,17 @@ const colorSchema = {
   "x-component": "Select",
   enum: COLOR_OPTIONS,
 };
+
+const iconSchema = {
+  title: "图标",
+  type: "string",
+  "x-decorator": "FormItem",
+  "x-component": "IconSelect",
+  "x-component-props": {
+    dataSource: '{{deviceIcons}}'
+  }
+  // 'x-reactions': ['{{useAsyncDataSource(loadDeviceIcons)}}'],
+}
 
 const borderColorSchema = {
   title: '边框颜色',
@@ -138,6 +149,16 @@ const labelSchema = {
   },
 };
 
+const fullShowSchema ={
+  title: "文字全量展示",
+  type: "boolean",
+  "x-decorator": "FormItem",
+  "x-decorator-props":{
+    tooltip: '默认只展示一行，超出会展示...',
+  },
+  "x-component": "Checkbox",
+}
+
 const lineSchema = {
   type: 'object',
   properties: {
@@ -173,15 +194,11 @@ const deviceSchema = {
       "x-decorator": "FormItem",
       "x-component": "Input",
     },
+    icon: iconSchema,
     borderColor: borderColorSchema,
     background: backgroundSchema,
     borderStyle: borderStyleSchema,
-    full: {
-      title: "文字全量展示",
-      type: "boolean",
-      "x-decorator": "FormItem",
-      "x-component": "Checkbox",
-    },
+    full: fullShowSchema,
   },
 };
 
@@ -194,9 +211,10 @@ const downlinkSchema = {
       "x-decorator": "FormItem",
       "x-component": "Input",
     },
-    // borderColor: borderColorSchema,
-    // background: backgroundSchema,
-    // borderStyle: borderStyleSchema,
+    borderColor: borderColorSchema,
+    background: backgroundSchema,
+    borderStyle: borderStyleSchema,
+    full: fullShowSchema,
   },
 };
 

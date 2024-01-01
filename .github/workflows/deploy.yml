@@ -42,8 +42,7 @@ jobs:
         run: npm run docs:build
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: JamesIves/github-pages-deploy-action@v4.2.2
         with:
-          github_token: ${{ secrets.GH_TOKEN }}
-          publish_dir: ./dist
-          force_orphan: true
+          branch: gh-pages
+          folder: dist

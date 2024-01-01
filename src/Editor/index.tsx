@@ -18,8 +18,10 @@ import Toolbar from '@/components/toolbar';
 
 import '@/index.less'
 
+
+
 export type EditorProps = {
-  iconMap: Record<string, React.FunctionComponent>,
+  iconMap: Record<string, Topology.TopologyIconProp>,
   materials: Topology.Materials;
   materialFilterable?: boolean;
   style?: React.CSSProperties;

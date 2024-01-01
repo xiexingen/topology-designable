@@ -17,7 +17,7 @@ order: 10
 
 | 参数                 | 说明                                                    | 类型                                      | 默认值                   |
 | -------------------- | ------------------------------------------------------- | ----------------------------------------- | ------------------------ |
-| iconMap              | 图标映射配置                                            | `Record<string, React.FunctionComponent>` | `{}`                     |
+| iconMap              | 图标映射配置                                            | `Record<string, Topology.TopologyIconProp` | `{}`                     |
 | materials            | 物料面板配置,详情请查看                                 | `Topology.Materials`                      | -                        |
 | materialFilterable   | 物料面板是否可搜索                                      | `boolean`                                 | `false`                  |
 | value                | 实际值                                                  | `Object`                                  | -                        |

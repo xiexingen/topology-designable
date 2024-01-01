@@ -1,3 +1,4 @@
+import type { Topology } from '@/types/global.d';
 import React, { useRef, useEffect, useImperativeHandle, forwardRef, useState } from 'react';
 import { Graph, Model } from '@antv/x6';
 import { useSize } from 'ahooks';
@@ -13,7 +14,7 @@ import '@/index.less'
 import { GRAPH_ZOOM } from '@/constants';
 
 export type EditorProps = {
-  iconMap: Record<string, React.FunctionComponent>,
+  iconMap: Record<string, Topology.TopologyIconProp>,
   value?: Model.FromJSONData,
   style?: React.CSSProperties;
   className?: string;
