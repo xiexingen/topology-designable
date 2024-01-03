@@ -40,5 +40,5 @@ Powered by XXG`,
       github: 'https://github.com/xiexingen/topology-designable',
     },
   },
-  ...(process.env.NODE_ENV === 'development' ? {} : { ssr: {} }),
+  // ...(process.env.NODE_ENV === 'development' ? {} : { ssr: {} }),
 });
