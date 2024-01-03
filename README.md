@@ -7,11 +7,9 @@ topology designable
 
 ## Usage
 
-TODO
-
-## Options
-
-TODO
+```bash
+yarn add topology-designable
+```
 
 ## Development
 

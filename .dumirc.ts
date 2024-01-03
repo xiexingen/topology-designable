@@ -1,12 +1,14 @@
 import { defineConfig } from 'dumi';
+import { version } from './package.json';
 
 export default defineConfig({
   outputPath: 'docs-dist',
-  themeConfig: {
-    name: 'topology-designable',
-  },
   base: '/topology-designable/',
   publicPath: '/topology-designable/',
+
+  define: {
+    'process.env.version': version,
+  },
   // 国内提速，部分案例会使用不了(如:web worker部分的案例)
   // publicPath: 'https://fastly.jsdelivr.net/gh/xiexingen/topology-designable@gh-pages/', // cdn.jsdelivr.net
   // publicPath: 'https://github.com.cnpmjs.org/xiexingen/blog/tree/gh-pages/',
@@ -25,5 +27,18 @@ export default defineConfig({
   //   { rel: 'stylesheet', href: '/style.css' },
   // ],
   // copy: ['CNAME'], // 自定义域名,放public文件夹即可
-  // ssr: {},
+  themeConfig: {
+    hd: { rules: [] },
+    rtl: true,
+    // name: 'TE',
+    logo: 'https://avatars.githubusercontent.com/u/7939085',
+    footer: `Open-source MIT Licensed | Copyright © 2021-present
+<br />
+Powered by XXG`,
+    prefersColor: { default: 'auto' },
+    socialLinks: {
+      github: 'https://github.com/xiexingen/topology-designable',
+    },
+  },
+  ...(process.env.NODE_ENV === 'development' ? {} : { ssr: {} }),
 });

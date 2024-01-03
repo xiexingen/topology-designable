@@ -10,11 +10,5 @@ module.exports = {
     'no-return-await': 0,
     'no-template-curly-in-string': 0,
     'no-console': ['error'],
-    "import/no-unresolved": [
-      "error",
-      {
-        "ignore": [".less$"]
-      }
-    ]
-  }
+  },
 };

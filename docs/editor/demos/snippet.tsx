@@ -1,10 +1,10 @@
-import type { EditorRef } from '..';
+import { dashboard as dashboardMaterials } from '@/assets-demo/materials';
 import type { Topology } from '@/types/global';
-import React, { useEffect, useRef } from 'react';
 import { useSetState } from 'ahooks';
 import { Button, Space, message } from 'antd';
+import React, { useEffect, useRef } from 'react';
 import { Editor, defaultPropsSchema } from 'topology-designable';
-import { dashboard as dashboardMaterials } from '@/assets-demo/materials'
+import type { EditorRef } from '..';
 import iconMap from '../../assets-demo/icon-map';
 
 function downloadJson(json: string) {
@@ -23,7 +23,7 @@ function downloadImage(base64Image: string) {
 }
 
 export default () => {
-  const editorRef = useRef()
+  const editorRef = useRef();
   const [messageApi] = message.useMessage();
   const [state, setState] = useSetState({
     size: {
@@ -32,7 +32,7 @@ export default () => {
     },
     materials: dashboardMaterials,
     value: undefined,
-  })
+  });
 
   const handleExport = async (type: 'json' | 'image') => {
     const editorInstance = editorRef.current as unknown as EditorRef;
@@ -52,26 +52,26 @@ export default () => {
         version: '1.0',
         description: '',
         thumb: imageBase64,
-        graph: jsonData
+        graph: jsonData,
       };
       downloadJson(JSON.stringify(exportJSON));
     } else if (type === 'image') {
       const imageBase64 = await editorInstance.getImageData();
       downloadImage(imageBase64);
     }
-  }
+  };
   const handleImport = async (data: Topology.Graph) => {
     if (!data?.graph) {
       throw Error('[graph] 导入的数据格式有误');
     }
     const editorInstance = editorRef.current as unknown as EditorRef;
     editorInstance.getInstance()?.fromJSON(data.graph, { silent: false });
-  }
+  };
 
-  const  handlePrintSnippet=async () =>{
+  const handlePrintSnippet = async () => {
     const editorInstance = editorRef.current as unknown as EditorRef;
     const graphInstance = editorInstance.getInstance();
-    if(!graphInstance){
+    if (!graphInstance) {
       return;
     }
     const selectedCells = graphInstance.getSelectedCells();
@@ -80,7 +80,10 @@ export default () => {
       return;
     }
     const selectedContainer = selectedCells[0] as any;
-    if (Array.isArray(selectedContainer.children) && selectedContainer.children.length > 0) {
+    if (
+      Array.isArray(selectedContainer.children) &&
+      selectedContainer.children.length > 0
+    ) {
       const containerSize = selectedContainer.getSize();
       const containerPosition = selectedContainer.getPosition();
       // 存储代码片段配置
@@ -91,7 +94,7 @@ export default () => {
           component: selectedContainer.shape,
           embeddable: true,
           componentProps: selectedContainer.getData()?.componentProps,
-        }
+        },
       ];
       const snippetEdges: any[] = [];
       const snippetConfig = {
@@ -104,7 +107,7 @@ export default () => {
           children: {
             nodes: snippetNodes,
             edges: snippetEdges,
-          }
+          },
         },
         size: {
           height: containerSize.height,
@@ -122,7 +125,12 @@ export default () => {
             component: cell.shape,
             componentProps: {
               ...cellComponentProps,
-              icon: cellComponentProps.icon ? cellComponentProps.icon.replace(/.*\/([\d|-\w]+)\.svg$/gi, '$1') : cellComponentProps.icon,
+              icon: cellComponentProps.icon
+                ? cellComponentProps.icon.replace(
+                    /.*\/([\d|-\w]+)\.svg$/gi,
+                    '$1',
+                  )
+                : cellComponentProps.icon,
             },
             size: cellSize,
             position: {
@@ -134,17 +142,25 @@ export default () => {
           };
           snippetNodes.push(newNode);
         } else if (cell.isEdge()) {
-          const sourcePort = cell.getSourceCell()?.port?.ports?.find((item: any) => item.id === cell.source.port);
-          const targetPort = cell.getTargetCell()?.port?.ports?.find((item: any) => item.id === cell.target.port);
+          const sourcePort = cell
+            .getSourceCell()
+            ?.port?.ports?.find((item: any) => item.id === cell.source.port);
+          const targetPort = cell
+            .getTargetCell()
+            ?.port?.ports?.find((item: any) => item.id === cell.target.port);
           const newEdge = {
-            source: cell.source?.cell ? {
-              cell: cell.source.cell,
-              port: sourcePort?.group,
-            } : cell.source,
-            target: cell.target?.cell ? {
-              cell: cell.target.cell,
-              port: targetPort?.group,
-            } : cell.target,
+            source: cell.source?.cell
+              ? {
+                  cell: cell.source.cell,
+                  port: sourcePort?.group,
+                }
+              : cell.source,
+            target: cell.target?.cell
+              ? {
+                  cell: cell.target.cell,
+                  port: targetPort?.group,
+                }
+              : cell.target,
           };
           snippetEdges.push(newEdge);
         }
@@ -159,20 +175,20 @@ export default () => {
       return;
     }
     messageApi.error('[graph] 至少包含一个子节点');
-  }
+  };
 
   const handleChange = (value: any) => {
     // eslint-disable-next-line no-console
     console.log('editor change', value);
-  }
+  };
 
   // 模拟加载后端接口数据
-  useEffect(()=>{
+  useEffect(() => {
     const dashboardData = require('../../assets-demo/dashboard.json');
     setState({
-      value: dashboardData['graph']
-    })
-  },[ ])
+      value: dashboardData['graph'],
+    });
+  }, []);
 
   return (
     <>
@@ -190,8 +206,10 @@ export default () => {
         onImport={handleImport}
         onChange={handleChange}
       />
-      <Space style={{padding:8}}>
-        <Button type="primary" onClick={handlePrintSnippet}>打印代码片段</Button>
+      <Space style={{ padding: 8 }}>
+        <Button type="primary" onClick={handlePrintSnippet}>
+          打印代码片段
+        </Button>
       </Space>
     </>
   );

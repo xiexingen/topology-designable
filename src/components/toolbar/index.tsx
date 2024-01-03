@@ -6,7 +6,6 @@ import { useSetState } from 'ahooks'
 import TopologyContext from '@/contexts/topology'
 import Help from './help';
 import { setHorizontalAlignment, setHorizontalSplit, setVerticalAlignment, setVerticalSplit, setZIndex } from '@/core/extension';
-import eventBus from '@/utils/event-bus';
 import { EVENT_MAP, GRAPH_ZOOM, ZOOM_OPTIONS } from '@/constants/index';
 import { TOOLBAR_OPTIONS, TOOLBAR_ENUM } from '@/constants/toolbar';
 import icons from './icons';
@@ -20,10 +19,9 @@ export type ToolbarProps = {
 }
 
 const zoomOptions = ZOOM_OPTIONS.map(item => ({ label: item.label, key: item.value }))
-
 const Toolbar: React.FC<ToolbarProps> = (props) => {
   const zooomRef = useRef(1)
-  const { graph } = useContext(TopologyContext);
+  const { graph,eventBus } = useContext(TopologyContext);
   const [state, setState] = useSetState<{ [key: string]: boolean }>({
     undo: true,
     redo: true,
@@ -84,21 +82,21 @@ const Toolbar: React.FC<ToolbarProps> = (props) => {
       // @ts-ignore
       const json = await blob.text();
       const result = JSON.parse(json);
-      eventBus.emit(EVENT_MAP.ON_IMPORT, result);
+      eventBus?.emit(EVENT_MAP.ON_IMPORT, result);
     };
     return false;
   };
 
   const handleExport = async (type: string) => {
-    eventBus.emit(EVENT_MAP.ON_EXPORT, type, graph);
+    eventBus?.emit(EVENT_MAP.ON_EXPORT, type, graph);
   };
 
   const handlePreview = () => {
-    eventBus.emit(EVENT_MAP.PREVIEW);
+    eventBus?.emit(EVENT_MAP.PREVIEW);
   };
 
   const handleCloseDrawer = () => {
-    eventBus.emit(EVENT_MAP.NODE_SELECTED);
+    eventBus?.emit(EVENT_MAP.NODE_SELECTED);
   };
 
   const handleChangeZoom = (zoom: number,absolute=false) => {
@@ -244,11 +242,11 @@ const Toolbar: React.FC<ToolbarProps> = (props) => {
   }, [props.toolbar]);
 
   useEffect(() => {
-    eventBus.on(EVENT_MAP.TOOLBAR_STATE_CHANGE, handleToolbarStateChange);
-    eventBus.on(EVENT_MAP.ZOOM_CHANGE, handleGraphZoomChange);
+    eventBus?.on(EVENT_MAP.TOOLBAR_STATE_CHANGE, handleToolbarStateChange);
+    eventBus?.on(EVENT_MAP.ZOOM_CHANGE, handleGraphZoomChange);
     return () => {
-      eventBus.off(EVENT_MAP.TOOLBAR_STATE_CHANGE, handleToolbarStateChange);
-      eventBus.off(EVENT_MAP.ZOOM_CHANGE, handleGraphZoomChange);
+      eventBus?.off(EVENT_MAP.TOOLBAR_STATE_CHANGE, handleToolbarStateChange);
+      eventBus?.off(EVENT_MAP.ZOOM_CHANGE, handleGraphZoomChange);
     }
   }, [])
 
