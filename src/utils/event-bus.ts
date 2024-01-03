@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-types */
-class EventBus {
+export default class EventBus {
   private eventMap: {
     [key:string]: Array<Function>
   };
@@ -21,5 +21,3 @@ class EventBus {
     }
   }
 }
-
-export default new EventBus();

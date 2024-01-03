@@ -12,6 +12,7 @@ import useGraph from '@/hooks/useGraph'
 
 import '@/index.less'
 import { GRAPH_ZOOM } from '@/constants';
+import EventBus from '@/utils/event-bus';
 
 export type EditorProps = {
   iconMap: Record<string, Topology.TopologyIconProp>,
@@ -26,10 +27,11 @@ export type EditorRef = {
 
 const Editor: React.ForwardRefRenderFunction<EditorRef, EditorProps> = (props, ref) => {
   const graphContainerRef = useRef<any>()
+  const eventBusRef = useRef<EventBus>(new EventBus());
   const [zoom, setZoom] = useState(1)
   const graphContainerSize = useSize(graphContainerRef);
 
-  const [graphInstance] = useGraph(graphContainerRef, {
+  const [graphInstance] = useGraph(graphContainerRef, eventBusRef.current, {
     graphOption: {
       width: graphContainerSize?.width,
       height: graphContainerSize?.height,
@@ -52,8 +54,8 @@ const Editor: React.ForwardRefRenderFunction<EditorRef, EditorProps> = (props, r
     graphEvent: false,
   })
 
-  const handleZoomToFit = ()=>{
-    if(!graphInstance){
+  const handleZoomToFit = () => {
+    if (!graphInstance) {
       return;
     }
     graphInstance.zoomToFit({
@@ -117,10 +119,11 @@ const Editor: React.ForwardRefRenderFunction<EditorRef, EditorProps> = (props, r
   return (
     <TopologyContext.Provider value={{
       graph: graphInstance,
-      iconMap: props.iconMap
+      iconMap: props.iconMap,
+      eventBus: eventBusRef.current,
     }}>
       <X6ReactPortalProvider />
-      <Layout style={props.style} className={classNames("topology-designable","topology-designable-preview", props.className)}>
+      <Layout style={props.style} className={classNames("topology-designable", "topology-designable-preview", props.className)}>
         <Layout.Content style={{ overflow: 'initial' }} className="topology-designable-content">
           <div className="canvas" style={{ width: '100%', height: '100%' }}>
             <div className='preview-zoom'>
@@ -129,7 +132,7 @@ const Editor: React.ForwardRefRenderFunction<EditorRef, EditorProps> = (props, r
                 <Button
                   title={`单击切换到自适应\n双击切换到100%`}
                   onClick={handleZoomToFit}
-                  onDoubleClick={()=> handleChangeZoom(1, true)}
+                  onDoubleClick={() => handleChangeZoom(1, true)}
                 >{zoomText}</Button>
                 <Button icon={<PlusOutlined />} onClick={() => handleChangeZoom(0.1)} />
               </Space.Compact>

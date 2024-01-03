@@ -11,13 +11,12 @@ import TopologyContext from '@/contexts/topology'
 import X6ReactPortalProvider from '@/contexts/x6-react-portal';
 import { EVENT_MAP } from '@/constants';
 import useGraph from '@/hooks/useGraph'
-import eventBus from '@/utils/event-bus';
 import MaterialPanel from '@/components/material-panel';
 import PropsPanel from '@/components/props-panel';
 import Toolbar from '@/components/toolbar';
 
 import '@/index.less'
-
+import EventBus from '@/utils/event-bus';
 
 
 export type EditorProps = {
@@ -40,10 +39,10 @@ export type EditorProps = {
 export type EditorRef = {
   getJsonData(): Promise<{
     cells: Cell.Properties[];
-}>;
-  getImageData(option?: Record<string,any>): Promise<string>;
-  getThumbData(width?:number,height?:number): Promise<string>;
-  getInstance: ()=>Graph;
+  }>;
+  getImageData(option?: Record<string, any>): Promise<string>;
+  getThumbData(width?: number, height?: number): Promise<string>;
+  getInstance: () => Graph;
 }
 
 const layoutWidth = {
@@ -53,6 +52,7 @@ const layoutWidth = {
 
 const Editor: React.ForwardRefRenderFunction<EditorRef, EditorProps> = (componentProp, ref) => {
   const graphContainerRef = useRef<any>()
+  const eventBusRef = useRef<EventBus>(new EventBus());
   const [currentNode, setCurrentNode] = useState<Cell | null>(null)
   const [topologyBase64Image, setTopologyBase64Image] = useState('')
   // merge 默认属性
@@ -68,7 +68,8 @@ const Editor: React.ForwardRefRenderFunction<EditorRef, EditorProps> = (componen
     toolbar: true,
   }, componentProp)
 
-  const [graphInstance] = useGraph(graphContainerRef, {
+  const [graphInstance] = useGraph(graphContainerRef,
+    eventBusRef.current, {
     graphOption: {
       width: props.size.width,
       height: props.size.height,
@@ -90,41 +91,41 @@ const Editor: React.ForwardRefRenderFunction<EditorRef, EditorProps> = (componen
   }
 
   // 获取编辑器的预览图
-  const getImageData = async (htmlToImageOption:Record<string,any> = {}): Promise<string> => {
-    if(!graphInstance){
-      throw Error('[graph] graph 尚未实例化') ;
+  const getImageData = async (htmlToImageOption: Record<string, any> = {}): Promise<string> => {
+    if (!graphInstance) {
+      throw Error('[graph] graph 尚未实例化');
     }
     const graphSvg = graphInstance.container.querySelector('.x6-graph-svg') as HTMLElement;
-      if (!graphSvg) {
-        throw Error('[graph] 未找到画板');
-      }
-      const clonedGraphSvg = graphSvg.cloneNode(true) as HTMLElement;
-      try {
-        clonedGraphSvg
-          .querySelector('g.x6-graph-svg-viewport')
-          ?.setAttribute('transform', 'matrix(1,0,0,1,0,0)');
-          graphInstance.container.appendChild(clonedGraphSvg);
-        clonedGraphSvg.style.zIndex = '-1';
-        clonedGraphSvg.style.width = `${props.size.width}px`;
-        clonedGraphSvg.style.height = `${props.size.height}px`;
-        const imageBase64 = await toPng(clonedGraphSvg, {
-          backgroundColor: 'white',
-          ...htmlToImageOption,
-        });
-        return imageBase64;
-      } finally {
-        graphInstance.container.removeChild(clonedGraphSvg);
-      }
+    if (!graphSvg) {
+      throw Error('[graph] 未找到画板');
+    }
+    const clonedGraphSvg = graphSvg.cloneNode(true) as HTMLElement;
+    try {
+      clonedGraphSvg
+        .querySelector('g.x6-graph-svg-viewport')
+        ?.setAttribute('transform', 'matrix(1,0,0,1,0,0)');
+      graphInstance.container.appendChild(clonedGraphSvg);
+      clonedGraphSvg.style.zIndex = '-1';
+      clonedGraphSvg.style.width = `${props.size.width}px`;
+      clonedGraphSvg.style.height = `${props.size.height}px`;
+      const imageBase64 = await toPng(clonedGraphSvg, {
+        backgroundColor: 'white',
+        ...htmlToImageOption,
+      });
+      return imageBase64;
+    } finally {
+      graphInstance.container.removeChild(clonedGraphSvg);
+    }
   }
 
   // 获取编辑器的缩略图
-  async function getThumbData(width = 356, height = 140):Promise<string> {
+  async function getThumbData(width = 356, height = 140): Promise<string> {
     // 创建一个 Image 对象
     const image = new Image();
     image.src = await getImageData({ quality: 0.2 });
-    return await new Promise((resolve, reject)=> {
+    return await new Promise((resolve, reject) => {
       // 当图像加载完成后执行回调函数
-      image.onload = ()=>{
+      image.onload = () => {
         // 创建一个 canvas 元素
         const canvas = document.createElement('canvas');
         canvas.width = width;
@@ -136,17 +137,17 @@ const Editor: React.ForwardRefRenderFunction<EditorRef, EditorProps> = (componen
         ctx.drawImage(image, 0, 0, width, height);
         resolve(canvas.toDataURL());
       };
-      image.onerror = (error)=>{
+      image.onerror = (error) => {
         reject(error);
       };
     });
   }
 
-  const getJsonData = async ():Promise<{
+  const getJsonData = async (): Promise<{
     cells: Cell.Properties[];
   }> => {
-    if(!graphInstance){
-      throw Error('[graph] graph 尚未实例化') ;
+    if (!graphInstance) {
+      throw Error('[graph] graph 尚未实例化');
     }
     return new Promise((resolve) => {
       resolve(graphInstance.toJSON());
@@ -163,35 +164,35 @@ const Editor: React.ForwardRefRenderFunction<EditorRef, EditorProps> = (componen
   }, 300)
 
   useEffect(() => {
-    eventBus.on(EVENT_MAP.CELL_REMOVE, handleCellRemoved);
-    eventBus.on(EVENT_MAP.NODE_SELECTED, handleChangeCurrentNode);
-    eventBus.on(EVENT_MAP.EDGE_SELECTED, handleChangeCurrentNode);
-    eventBus.on(EVENT_MAP.ON_EXPORT, handleExport);
-    eventBus.on(EVENT_MAP.ON_IMPORT, handleImport);
-    eventBus.on(EVENT_MAP.PREVIEW, handlePreview);
-    eventBus.on(EVENT_MAP.ON_CHANGE, handleChange);
+    eventBusRef.current?.on(EVENT_MAP.CELL_REMOVE, handleCellRemoved);
+    eventBusRef.current?.on(EVENT_MAP.NODE_SELECTED, handleChangeCurrentNode);
+    eventBusRef.current?.on(EVENT_MAP.EDGE_SELECTED, handleChangeCurrentNode);
+    eventBusRef.current?.on(EVENT_MAP.ON_EXPORT, handleExport);
+    eventBusRef.current?.on(EVENT_MAP.ON_IMPORT, handleImport);
+    eventBusRef.current?.on(EVENT_MAP.PREVIEW, handlePreview);
+    eventBusRef.current?.on(EVENT_MAP.ON_CHANGE, handleChange);
 
     return () => {
-      eventBus.off(EVENT_MAP.CELL_REMOVE, handleCellRemoved);
-      eventBus.off(EVENT_MAP.NODE_SELECTED, handleChangeCurrentNode);
-      eventBus.off(EVENT_MAP.EDGE_SELECTED, handleChangeCurrentNode);
-      eventBus.off(EVENT_MAP.ON_EXPORT, handleExport);
-      eventBus.off(EVENT_MAP.ON_IMPORT, handleImport);
-      eventBus.off(EVENT_MAP.PREVIEW, handlePreview);
-      eventBus.off(EVENT_MAP.ON_CHANGE, handleChange);
+      eventBusRef.current?.off(EVENT_MAP.CELL_REMOVE, handleCellRemoved);
+      eventBusRef.current?.off(EVENT_MAP.NODE_SELECTED, handleChangeCurrentNode);
+      eventBusRef.current?.off(EVENT_MAP.EDGE_SELECTED, handleChangeCurrentNode);
+      eventBusRef.current?.off(EVENT_MAP.ON_EXPORT, handleExport);
+      eventBusRef.current?.off(EVENT_MAP.ON_IMPORT, handleImport);
+      eventBusRef.current?.off(EVENT_MAP.PREVIEW, handlePreview);
+      eventBusRef.current?.off(EVENT_MAP.ON_CHANGE, handleChange);
     }
-  }, [handleCellRemoved,handleChangeCurrentNode,handleExport,handleImport,handlePreview,handleChange])
+  }, [handleCellRemoved, handleChangeCurrentNode, handleExport, handleImport, handlePreview, handleChange])
 
-  useEffect(()=>{
-    if(graphInstance){
-      if(props.value){
+  useEffect(() => {
+    if (graphInstance) {
+      if (props.value) {
         graphInstance.fromJSON(props.value);
       }
       else {
         graphInstance.clearCells();
       }
     }
-  },[
+  }, [
     graphInstance,
     props.value
   ])
@@ -200,13 +201,14 @@ const Editor: React.ForwardRefRenderFunction<EditorRef, EditorProps> = (componen
     getJsonData,
     getImageData,
     getThumbData,
-    getInstance: ()=> graphInstance as Graph,
+    getInstance: () => graphInstance as Graph,
   }));
 
   return (
     <TopologyContext.Provider value={{
       graph: graphInstance,
-      iconMap: props.iconMap
+      iconMap: props.iconMap,
+      eventBus: eventBusRef.current
     }}>
       {/* 为 自定义 rect 节点提供数据 */}
       <X6ReactPortalProvider />

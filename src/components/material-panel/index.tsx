@@ -8,7 +8,6 @@ import { EVENT_MAP, TOPOLOGY_SNIPPET } from '@/constants/index';
 import defaultPorts from '@/constants/default-ports';
 import TopologyContext from '@/contexts/topology'
 import createSnippet from '@/core/snippet';
-import eventBus from '@/utils/event-bus';
 import MaterialNode from './material-node'
 
 interface IMaterialPanelProps {
@@ -48,7 +47,7 @@ const MaterialPanel: React.FC<IMaterialPanelProps> = (props) => {
   // material id - 配置映射
   const [materialMap, setMaterialMap] = useState<Record<string, Topology.Node>>({});
 
-  const { graph } = useContext(TopologyContext);
+  const { graph,eventBus } = useContext(TopologyContext);
 
   // 初始化物料侧边栏
   const initSideBar = () => {
@@ -109,9 +108,9 @@ const MaterialPanel: React.FC<IMaterialPanelProps> = (props) => {
   }, [props.materials])
 
   useEffect(() => {
-    eventBus.on(EVENT_MAP.NODE_ADDED, onNodeAdded);
+    eventBus?.on(EVENT_MAP.NODE_ADDED, onNodeAdded);
     return () => {
-      eventBus.on(EVENT_MAP.NODE_ADDED, onNodeAdded);
+      eventBus?.off(EVENT_MAP.NODE_ADDED, onNodeAdded);
     }
   }, [])
 

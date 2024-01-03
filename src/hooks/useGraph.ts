@@ -4,6 +4,7 @@ import { bindGraphEvent, bindKeyboardEvent } from "@/core/events";
 import registerDependency from "@/core/register-dependency";
 import type { PredefinePluginOption } from "@/core/register-plugins";
 import registerPlugins from "@/core/register-plugins";
+import EventBus from '@/utils/event-bus';
 import type { Options } from "@antv/x6";
 import { Graph, Shape } from "@antv/x6";
 import { useEffect, useState } from "react";
@@ -17,6 +18,7 @@ export type GraphOptions = {
 
 export default (
   mountElement: React.MutableRefObject<HTMLElement> | null,
+  eventBus: EventBus,
   option?: GraphOptions
 ) => {
   const [graphInstance,setGraphInstance] =useState<Graph>()
@@ -194,7 +196,7 @@ export default (
 
     // 绑定画布事件
     if(option?.graphEvent !== false){
-      bindGraphEvent(graph, mountElement.current);
+      bindGraphEvent(graph, mountElement.current,eventBus);
     }
     setGraphInstance(graph)
   }, [mountElement]);

@@ -1,7 +1,7 @@
 import { EVENT_MAP, GRAPH_ZOOM } from "@/constants/index";
-import eventBus from "@/utils/event-bus";
 import { getSelectedParentCells } from "@/utils/index";
 import type { Graph, Node } from "@antv/x6";
+import EventBus from '@/utils/event-bus';
 import { setPositionDeep, setZIndexTo } from "./extension";
 
 // 控制连接桩显示/隐藏
@@ -140,7 +140,7 @@ export function bindKeyboardEvent(graph: Graph) {
 /**
  * 绑定画布事件
  */
-export function bindGraphEvent(graph: Graph, container: HTMLElement) {
+export function bindGraphEvent(graph: Graph, container: HTMLElement,eventBus:EventBus) {
   const dispatchCellCount = () => {
     const cells = graph.getCells();
     eventBus.emit(EVENT_MAP.TOOLBAR_STATE_CHANGE, {

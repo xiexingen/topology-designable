@@ -12,6 +12,13 @@ order: 10
 ### 简单案例
 
 <code src="./demos/simple.tsx"></code>
+### 自定义属性
+
+<code src="./demos/custom-props.tsx"></code>
+
+### 片段设计器
+
+<code src="./demos/snippet.tsx"></code>
 
 ## API
 
