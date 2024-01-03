@@ -1,22 +1,26 @@
 ---
 hero:
-  title: library
-  description: topology designable
+  title: 拓扑图设计器
+  description: topology-designable
   actions:
-    - text: Hello
-      link: /
-    - text: World
-      link: /
+    - text: 设计器
+      link: /editor
+    - text: 预览
+      link: /preview
 features:
-  - title: Hello
+  - title: 可视化
     emoji: 💎
-    description: Put hello description here
-  - title: World
+    description: 所见即所得
+  - title: 自定义
     emoji: 🌈
-    description: Put world description here
-  - title: '!'
+    description: 可任意拖拽配置不同属性
+  - title: '可嵌套'
     emoji: 🚀
-    description: Put ! description here
+    description: 可以配置是否运行节点进行嵌套
 ---
 
-topology-designable
+## 诞生背景
+
+## 能做啥
+
+## TODO

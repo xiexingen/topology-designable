@@ -1,9 +1,9 @@
-import type { Topology } from 'topology-designable';
-import React, { useEffect, useRef } from 'react';
+import iconMap from '@/assets-demo/icon-map';
+import { dashboard as dashboardMaterials } from '@/assets-demo/materials';
 import { useSetState } from 'ahooks';
+import React, { useEffect, useRef } from 'react';
+import type { Topology } from 'topology-designable';
 import { Editor, defaultPropsSchema } from 'topology-designable';
-import { dashboard as dashboardMaterials } from '@/assets-demo/materials'
-import iconMap from '../../assets-demo/icon-map';
 
 function downloadJson(json: string) {
   const a = document.createElement('a');
@@ -21,7 +21,7 @@ function downloadImage(base64Image: string) {
 }
 
 export default () => {
-  const editorRef = useRef()
+  const editorRef = useRef();
   const [state, setState] = useSetState({
     size: {
       height: 666,
@@ -29,7 +29,7 @@ export default () => {
     },
     materials: dashboardMaterials,
     value: undefined,
-  })
+  });
 
   const handleExport = async (type: 'json' | 'image') => {
     const editorInstance = editorRef.current as unknown as EditorRef;
@@ -49,34 +49,34 @@ export default () => {
         version: '1.0',
         description: '',
         thumb: imageBase64,
-        graph: jsonData
+        graph: jsonData,
       };
       downloadJson(JSON.stringify(exportJSON));
     } else if (type === 'image') {
       const imageBase64 = await editorInstance.getImageData();
       downloadImage(imageBase64);
     }
-  }
+  };
   const handleImport = async (data: Topology.Graph) => {
     if (!data?.graph) {
       throw Error('[graph] 导入的数据格式有误');
     }
     const editorInstance = editorRef.current as unknown as EditorRef;
     editorInstance.getInstance()?.fromJSON(data.graph, { silent: false });
-  }
+  };
 
   const handleChange = (value: any) => {
     // eslint-disable-next-line no-console
     console.log('editor change', value);
-  }
+  };
 
   // 模拟加载后端接口数据
   useEffect(() => {
-    const dashboardData = require('../../assets-demo/dashboard.json');
+    const dashboardData = require('@/assets-demo/dashboard.json');
     setState({
-      value: dashboardData['graph']
-    })
-  }, [])
+      value: dashboardData['graph'],
+    });
+  }, []);
 
   return (
     <Editor

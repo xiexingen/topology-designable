@@ -1,11 +1,12 @@
 {
   "compilerOptions": {
-    "typeRoots": ["./typings","./node_modules/@types"],
+    "typeRoots": ["./typings", "./node_modules/@types"],
     "strict": true,
     "declaration": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "noImplicitAny": false,
+    "resolveJsonModule": true,
     "jsx": "react",
     "baseUrl": "./",
     "paths": {
