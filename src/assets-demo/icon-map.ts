@@ -12,86 +12,86 @@ import police from './icons/police.svg';
 import switchIcon from './icons/switch.svg';
 import web from './icons/web.svg';
 
-export const ICON_NAMES={
+export const ICON_NAMES = {
   bank: 'bank',
-  chinaMobile:'chinaMobile',
-  chinaUnicom:'chinaUnicom',
-  cloud:'cloud',
-  databaseAudit:'databaseAudit',
-  ddos:'ddos',
-  firewallIp:'firewallIp',
-  firewall:'firewall',
-  government:'government',
-  internet:'internet',
-  police:'police',
-  switch:'switch',
-  web:'web',
-}
+  chinaMobile: 'chinaMobile',
+  chinaUnicom: 'chinaUnicom',
+  cloud: 'cloud',
+  databaseAudit: 'databaseAudit',
+  ddos: 'ddos',
+  firewallIp: 'firewallIp',
+  firewall: 'firewall',
+  government: 'government',
+  internet: 'internet',
+  police: 'police',
+  switch: 'switch',
+  web: 'web',
+};
 
 export default {
   [ICON_NAMES.bank]: {
-    label:'银行',
+    label: '银行',
     value: ICON_NAMES.bank,
-    icon:bank
+    icon: bank,
   },
-  [ICON_NAMES.chinaMobile]:{
-    label:'移动专线',
+  [ICON_NAMES.chinaMobile]: {
+    label: '移动专线',
     value: ICON_NAMES.chinaMobile,
-    icon:chinaMobile
+    icon: chinaMobile,
   },
-  [ICON_NAMES.chinaUnicom]:{
-    label:'联通专线',
+  [ICON_NAMES.chinaUnicom]: {
+    label: '联通专线',
     value: ICON_NAMES.chinaUnicom,
-    icon:chinaUnicom
+    icon: chinaUnicom,
   },
-  [ICON_NAMES.cloud]:{
-    label:'云平台',
+  [ICON_NAMES.cloud]: {
+    label: '云平台',
     value: ICON_NAMES.cloud,
-    icon:cloud
+    icon: cloud,
   },
-  [ICON_NAMES.databaseAudit]:{
-    label:'数据库审计',
+  [ICON_NAMES.databaseAudit]: {
+    label: '数据库审计',
     value: ICON_NAMES.databaseAudit,
-    icon:databaseAudit
+    icon: databaseAudit,
   },
-  [ICON_NAMES.ddos]:{
-    label:'抗DDOS攻击',
+  [ICON_NAMES.ddos]: {
+    label: '抗DDOS攻击',
     value: ICON_NAMES.ddos,
-    icon:ddos
+    icon: ddos,
   },
-  [ICON_NAMES.firewallIp]:{
-    label:'IP封禁',
+  [ICON_NAMES.firewallIp]: {
+    label: 'IP封禁',
     value: ICON_NAMES.firewallIp,
-    icon:firewallIp
+    icon: firewallIp,
   },
-  [ICON_NAMES.firewall]:{
-    label:'防火墙',
+  [ICON_NAMES.firewall]: {
+    label: '防火墙',
     value: ICON_NAMES.firewall,
-    icon:firewall
+    icon: firewall,
   },
-  [ICON_NAMES.government]:{
-    label:'银行',
-    value: ICON_NAMES.government,
-    icon:government
-  },
-  [ICON_NAMES.internet]:{
-    label:'互联网',
+  [ICON_NAMES.internet]: {
+    label: '互联网',
     value: ICON_NAMES.internet,
-    icon:internet
+    icon: internet,
   },
-  [ICON_NAMES.police]:{
-    label:'公安',
+  [ICON_NAMES.government]: {
+    label: '政府',
+    value: ICON_NAMES.government,
+    icon: government,
+  },
+  [ICON_NAMES.police]: {
+    label: '公安',
     value: ICON_NAMES.police,
-    icon:police
+    icon: police,
   },
-  [ICON_NAMES.switch]:{
-    label:'交换机',
+  [ICON_NAMES.switch]: {
+    label: '交换机',
     value: ICON_NAMES.switch,
-    icon: switchIcon
+    icon: switchIcon,
   },
-  [ICON_NAMES.web]:{
-    label:'Web应用',
+  [ICON_NAMES.web]: {
+    label: 'Web应用',
     value: ICON_NAMES.web,
-    icon:web
+    icon: web,
   },
-}
+};
