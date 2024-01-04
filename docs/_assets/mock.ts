@@ -115,6 +115,11 @@ export async function getDevices() {
   console.log('请求设备列表');
   await delay();
   return await new Promise((resolve) => {
-    resolve(devices);
+    resolve(
+      devices.map((item) => ({
+        value: item.id,
+        label: item.name,
+      })),
+    );
   });
 }

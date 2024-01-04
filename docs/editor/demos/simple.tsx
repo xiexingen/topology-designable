@@ -1,9 +1,9 @@
-import iconMap from '@/assets-demo/icon-map';
-import { dashboard as dashboardMaterials } from '@/assets-demo/materials';
 import { useSetState } from 'ahooks';
 import React, { useEffect, useRef } from 'react';
 import type { Topology } from 'topology-designable';
 import { Editor, defaultPropsSchema } from 'topology-designable';
+import iconMap from '../../_assets/icon-map';
+import { dashboard as dashboardMaterials } from '../../_assets/materials';
 
 function downloadJson(json: string) {
   const a = document.createElement('a');
@@ -72,7 +72,7 @@ export default () => {
 
   // 模拟加载后端接口数据
   useEffect(() => {
-    const dashboardData = require('@/assets-demo/dashboard.json');
+    const dashboardData = require('../../_assets/dashboard.json');
     setState({
       value: dashboardData['graph'],
     });

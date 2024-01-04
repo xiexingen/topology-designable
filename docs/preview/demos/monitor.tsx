@@ -1,9 +1,9 @@
-import iconMap from '@/assets-demo/icon-map';
-import { DeviceStatus, getDeviceStatus } from '@/assets-demo/mock';
 import type { Graph } from '@antv/x6';
 import { useRequest, useSetState } from 'ahooks';
 import React, { useEffect, useRef } from 'react';
 import { Preview } from 'topology-designable';
+import iconMap from '../../_assets/icon-map';
+import { DeviceStatus, getDeviceStatus } from '../../_assets/mock';
 import ContainerNode from './components/container-node';
 import InnerNode from './components/inner-node';
 
@@ -84,13 +84,13 @@ export default () => {
   };
 
   useEffect(() => {
-    const dashboardData = require('@/assets-demo/dashboard.json');
+    const dashboardData = require('../../_assets/dashboard.json');
     setState({
       value: dashboardData['graph'],
     });
   }, []);
 
-  useRequest(() => getDeviceStatus, {
+  useRequest(getDeviceStatus, {
     onSuccess: (devicesStatus) => {
       updateGraphDevices(devicesStatus);
     },

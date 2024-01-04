@@ -13,7 +13,11 @@ nav:
 
 ### 简单案例
 
-<code src="./demos/simple.tsx"></code>
+<!-- <code src="./demos/simple.tsx"></code> -->
+
+### 监控面板
+
+<code src="./demos/monitor.tsx"></code>
 
 ## API
 

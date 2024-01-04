@@ -13,15 +13,17 @@ nav:
 
 ### 简单案例
 
-<code src="./demos/simple.tsx"></code>
+<!-- <code src="./demos/simple.tsx"></code> -->
 
 ### 自定义属性
 
-<!-- <code src="../src/Preview/demos/custom-props.tsx"></code> -->
+<code src="./demos/custom-props.tsx"></code>
+
+### 自定义属性面板组件
 
 ### 片段设计器
 
-<!-- <code src="../src/Preview/demos/snippet.tsx"></code> -->
+<!-- <code src="./demos/snippet.tsx"></code> -->
 
 ## API
 
