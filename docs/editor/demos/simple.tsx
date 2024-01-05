@@ -32,24 +32,22 @@ export default () => {
   });
 
   const handleExport = async (type: 'json' | 'image') => {
-    const editorInstance = editorRef.current as unknown as EditorRef;
+    const editorInstance = editorRef.current as unknown as Editor;
     if (type === 'json') {
       const jsonData = await editorInstance.getJsonData();
-      const imageBase64 = await editorInstance.getImageData();
+      // const imageBase64 = await editorInstance.getImageData();
       if (!jsonData.cells?.length) {
         throw Error('[topology] 资源为空');
       }
       const exportJSON = {
-        id: '111',
-        type: 1,
+        id: new Date().getTime(),
         size: {
           height: state.size.height,
           width: state.size.width,
         },
         version: '1.0',
-        description: '',
-        thumb: imageBase64,
         graph: jsonData,
+        // thumb: imageBase64,
       };
       downloadJson(JSON.stringify(exportJSON));
     } else if (type === 'image') {
@@ -61,7 +59,7 @@ export default () => {
     if (!data?.graph) {
       throw Error('[graph] 导入的数据格式有误');
     }
-    const editorInstance = editorRef.current as unknown as EditorRef;
+    const editorInstance = editorRef.current as unknown as Editor;
     editorInstance.getInstance()?.fromJSON(data.graph, { silent: false });
   };
 

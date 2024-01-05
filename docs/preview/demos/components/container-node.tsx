@@ -6,7 +6,7 @@ export type ContainerNodeProps = {
 };
 
 const InnerNode: React.FC<ContainerNodeProps> = () => {
-  return <>container-node</>;
+  return <div>x</div>;
 };
 
 export default InnerNode;

@@ -1,3 +1,8 @@
+/**
+ * title: 自定义属性面板中的项
+ * description: 我们为 topology-device 类型的组件增加了一个绑定设备的功能，点击设备节点查看右侧属性面板可以看到新增的 "设备绑定" 字段
+ */
+
 import { action } from '@formily/reactive';
 import { useSetState } from 'ahooks';
 import React, { useEffect, useRef } from 'react';
@@ -78,20 +83,18 @@ export default () => {
     const editorInstance = editorRef.current as Editor;
     if (type === 'json') {
       const jsonData = await editorInstance.getJsonData();
-      const imageBase64 = await editorInstance.getImageData();
+      // const imageBase64 = await editorInstance.getImageData();
       if (!jsonData.cells?.length) {
         throw Error('[topology] 资源为空');
       }
       const exportJSON = {
-        id: '111',
-        type: 1,
+        id: new Date().getTime(),
         size: {
           height: state.size.height,
           width: state.size.width,
         },
         version: '1.0',
-        description: '',
-        thumb: imageBase64,
+        // thumb: imageBase64,
         graph: jsonData,
       };
       downloadJson(JSON.stringify(exportJSON));

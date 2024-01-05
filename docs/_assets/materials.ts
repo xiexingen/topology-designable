@@ -178,7 +178,7 @@ export const dashboard: Topology.Materials = [
       },
       {
         id: 'cloud',
-        component: 'topology-downlink',
+        component: 'topology-device',
         size: {
           height: 74,
           width: 74,

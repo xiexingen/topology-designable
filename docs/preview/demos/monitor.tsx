@@ -10,11 +10,11 @@ import InnerNode from './components/inner-node';
 function getGraphCellModelData(graphCell, deviceMap) {
   const { componentProps } = graphCell.getData() || {};
   const cellData = {
-    componentData: {},
+    componentData: null,
     containerRender: null as unknown,
     innerRender: null as unknown,
   };
-  const deviceId = componentProps?.device.id;
+  const deviceId = componentProps?.device;
   const deviceData = deviceId && deviceMap[deviceId];
   if (deviceData && graphCell.shape === 'topology-device') {
     // 自定义渲染的数据，会跟节点配置属性一并传给下面两个方法
@@ -66,7 +66,7 @@ export default () => {
         indirect: false,
       });
 
-      const deviceId = componentProps?.device?.id;
+      const deviceId = componentProps?.device;
       // 离线节点的出节点标记红色
       outLedges?.forEach((edge) => {
         const isOffline = deviceMap[deviceId]?.status === DeviceStatus.offline;
@@ -77,9 +77,7 @@ export default () => {
         edge.setAttrByPath('line/stroke-width', isOffline ? 2 : 1);
       });
       // 跟已有的配置进行合并
-      cell.updateData({
-        model: cellModelData,
-      });
+      cell.updateData(cellModelData);
     });
   };
 
@@ -99,7 +97,7 @@ export default () => {
   return (
     <Preview
       ref={editorRef}
-      style={{ height: '100vh' }}
+      style={{ height: 666 }}
       value={state.value}
       iconMap={iconMap}
     />

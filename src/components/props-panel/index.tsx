@@ -1,27 +1,42 @@
-import type { Cell } from '@antv/x6';
+import IconSelect from '@/components/props-panel/icon-select';
+import TopologyContext from '@/contexts/topology';
 import type { Topology } from '@/types/global';
-import type { ISchema, SchemaReactComponents } from '@formily/react'
-import React, { useEffect, useState, useContext } from 'react';
-import { Card } from 'antd';
-import { createForm, onFieldInputValueChange } from '@formily/core'
-import { createSchemaField } from '@formily/react'
-import { Form, FormItem, Input, Select, NumberPicker, Checkbox, Radio, Cascader, DatePicker, Password, Switch, TimePicker, Transfer, TreeSelect, } from '@formily/antd-v5';
-import pick from 'lodash/pick';
+import type { Cell } from '@antv/x6';
+import {
+  Cascader,
+  Checkbox,
+  DatePicker,
+  Form,
+  FormItem,
+  Input,
+  NumberPicker,
+  Password,
+  Radio,
+  Select,
+  Switch,
+  TimePicker,
+  Transfer,
+  TreeSelect,
+} from '@formily/antd-v5';
+import { createForm, onFieldInputValueChange } from '@formily/core';
+import type { ISchema, SchemaReactComponents } from '@formily/react';
+import { createSchemaField } from '@formily/react';
+import { Card, Empty } from 'antd';
+import cloneDeep from 'lodash/cloneDeep';
 import get from 'lodash/get';
-import set from 'lodash/set';
+import isEmpty from 'lodash/isEmpty';
+import pick from 'lodash/pick';
 import reduce from 'lodash/reduce';
-import cloneDeep from 'lodash/cloneDeep'
-import TopologyContext from '@/contexts/topology'
-import IconSelect from '@/components/props-panel/icon-select'
-import ColorPicker from './color-picker'
-
+import set from 'lodash/set';
+import React, { useContext, useEffect, useState } from 'react';
+import ColorPicker from './color-picker';
 
 export type PropsPanelProps = {
   node: Cell | null;
   schemaMap?: Record<string, ISchema>;
   components?: SchemaReactComponents;
   scope?: any;
-}
+};
 
 function getTitle(node: PropsPanelProps['node']) {
   if (node === null) {
@@ -36,7 +51,7 @@ function getTitle(node: PropsPanelProps['node']) {
   return '-';
 }
 
-const SchemaField = createSchemaField()
+const SchemaField = createSchemaField();
 const defaultComponents = {
   FormItem,
   Input,
@@ -54,7 +69,7 @@ const defaultComponents = {
   TreeSelect,
   IconSelect,
   ColorPicker,
-}
+};
 const EDGE_PROP_KEYS = ['attrs', 'router', 'connector'];
 
 function getNodeComponentProps(node: Cell) {
@@ -73,7 +88,10 @@ function getNodeComponentProps(node: Cell) {
 const PropsPanel: React.FC<PropsPanelProps> = (props) => {
   const [title, setTitle] = useState('-');
   const [schema, setSchema] = useState({});
-  const [deviceIcons, setDeviceIcons] = useState<Topology.TopologyIconProp[]>([]);
+  const [deviceIcons, setDeviceIcons] = useState<Topology.TopologyIconProp[]>(
+    [],
+  );
+  const hasSchema = isEmpty(schema);
 
   const { iconMap = {} } = useContext(TopologyContext);
 
@@ -87,26 +105,31 @@ const PropsPanel: React.FC<PropsPanelProps> = (props) => {
         await field.validate();
         const inputValue = field.inputValue;
         // 查询出节点上配置的属性数据
-        const nodeComponentProps: Record<string, any> = getNodeComponentProps(props.node);
-        const pathName = field.path.toString()
-        const preValue = get(nodeComponentProps, pathName)
+        const nodeComponentProps: Record<string, any> = getNodeComponentProps(
+          props.node,
+        );
+        const pathName = field.path.toString();
+        const preValue = get(nodeComponentProps, pathName);
         if (inputValue === preValue) {
           return;
         }
         if (props.node.isEdge()) {
-          const newProps = set(nodeComponentProps, pathName, inputValue)
+          const newProps = set(nodeComponentProps, pathName, inputValue);
           props.node.prop(newProps);
         } else if (props.node.isNode()) {
-          props.node.setData({
-            componentProps: {
-              ...nodeComponentProps,
-              [pathName]: inputValue,
-            }
-          }, { deep: false });
+          props.node.setData(
+            {
+              componentProps: {
+                ...nodeComponentProps,
+                [pathName]: inputValue,
+              },
+            },
+            { deep: false },
+          );
         }
-      })
+      });
     },
-  })
+  });
 
   const handleNodeChange = (node: Cell | null) => {
     // 将表单的值清空
@@ -116,29 +139,38 @@ const PropsPanel: React.FC<PropsPanelProps> = (props) => {
     }
     const nodeComponentProps = getNodeComponentProps(node);
     // 必须使用展开运算符，否则会丢失引用类型的值
-    form.setValues({
-      ...nodeComponentProps
-    }, 'overwrite');
-  }
+    form.setValues(
+      {
+        ...nodeComponentProps,
+      },
+      'overwrite',
+    );
+  };
 
   useEffect(() => {
     const title = getTitle(props.node);
-    const tempSchema = props.node?.shape ? props.schemaMap?.[props.node.shape] : {};
+    const tempSchema = props.node?.shape
+      ? props.schemaMap?.[props.node.shape]
+      : {};
     setTitle(title);
     setSchema(tempSchema || {});
-  }, [props.node])
+  }, [props.node]);
 
   useEffect(() => {
-    handleNodeChange(props.node)
-  }, [schema, form, props.node])
+    handleNodeChange(props.node);
+  }, [schema, form, props.node]);
 
   useEffect(() => {
-    const result = reduce(iconMap, (result, cur) => {
-      result.push(cur)
-      return result;
-    }, [] as Topology.TopologyIconProp[])
-    setDeviceIcons(result)
-  }, [iconMap])
+    const result = reduce(
+      iconMap,
+      (result, cur) => {
+        result.push(cur);
+        return result;
+      },
+      [] as Topology.TopologyIconProp[],
+    );
+    setDeviceIcons(result);
+  }, [iconMap]);
 
   // const loadDeviceIcons = async () => {
   //   return new Promise((resolve) => {
@@ -161,30 +193,43 @@ const PropsPanel: React.FC<PropsPanelProps> = (props) => {
   // }
 
   return (
-    <Card size="small" title={title} rootClassName='topology-designable-props-panel'>
-      <Form feedbackLayout="popover" form={form} layout="vertical" colon={false}>
-        <SchemaField
-          scope={{
-            ...props.scope,
-            // useAsyncDataSource,
-            // loadDeviceIcons,
-            deviceIcons,
-          }}
-          components={{
-            ...defaultComponents,
-            ...props.components
-          }}
-          schema={schema}
-        />
-      </Form>
+    <Card
+      size="small"
+      title={title}
+      rootClassName="topology-designable-props-panel"
+    >
+      {hasSchema ? (
+        <Empty description="暂无配置" />
+      ) : (
+        <Form
+          feedbackLayout="popover"
+          form={form}
+          layout="vertical"
+          colon={false}
+        >
+          <SchemaField
+            scope={{
+              ...props.scope,
+              // useAsyncDataSource,
+              // loadDeviceIcons,
+              deviceIcons,
+            }}
+            components={{
+              ...defaultComponents,
+              ...props.components,
+            }}
+            schema={schema}
+          />
+        </Form>
+      )}
     </Card>
-  )
+  );
 };
 
 PropsPanel.defaultProps = {
   node: null,
   schemaMap: {},
-  components: {}
-}
+  components: {},
+};
 
-export default PropsPanel
+export default PropsPanel;
