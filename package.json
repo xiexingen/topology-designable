@@ -44,7 +44,9 @@
     ]
   },
   "dependencies": {
+    "@ant-design/cssinjs": "^1.18.2",
     "@ant-design/icons": "^5.2.6",
+    "@ant-design/pro-provider": "^2.13.5",
     "@antv/x6": "^2.16.1",
     "@antv/x6-plugin-clipboard": "^2.1.6",
     "@antv/x6-plugin-dnd": "^2.1.1",
@@ -60,6 +62,7 @@
     "@formily/react": "^2.3.0",
     "ahooks": "^3.7.8",
     "antd": "^5.11.5",
+    "antd-style": "^3.6.1",
     "classnames": "^2.3.2",
     "html-to-image": "^1.11.11",
     "lodash": "^4.17.21"

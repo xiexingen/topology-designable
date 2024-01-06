@@ -32,9 +32,7 @@ export default defineConfig({
     rtl: true,
     // name: 'TE',
     logo: 'https://avatars.githubusercontent.com/u/7939085',
-    footer: `Open-source MIT Licensed | Copyright © 2021-present
-<br />
-Powered by XXG`,
+    footer: `Open-source MIT Licensed | Copyright © 2021-present Powered by XXG`,
     prefersColor: { default: 'auto' },
     socialLinks: {
       github: 'https://github.com/xiexingen/topology-designable',

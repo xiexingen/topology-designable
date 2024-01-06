@@ -1,3 +1,8 @@
+/**
+ * title: 实现一个实时监控大屏
+ * description: 我们可以查看设备实时状态，可以对某些设备点击右键进行操作(演示可以自定义对节点进行扩展)
+ */
+
 import type { Graph } from '@antv/x6';
 import { useRequest, useSetState } from 'ahooks';
 import React, { useEffect, useRef } from 'react';
@@ -20,12 +25,12 @@ function getGraphCellModelData(graphCell, deviceMap) {
     // 自定义渲染的数据，会跟节点配置属性一并传给下面两个方法
     cellData.componentData = deviceData;
     // 节点的容器，用于业务自定义渲染，device 节点会渲染该组件,接受两个参数 节点的属性配置 节点的数据(如果有)
-    cellData.containerRender = (prop, data) => (
-      <ContainerNode prop={prop} data={data} />
+    cellData.containerRender = ({ componentData, componentProps }) => (
+      <ContainerNode prop={componentProps} data={componentData} />
     );
     // 节点的内层图标，用于业务自定义渲染，device 节点会渲染该组件(如果有)
-    cellData.innerRender = (prop, data) => (
-      <InnerNode prop={prop} data={data} />
+    cellData.innerRender = ({ componentData, componentProps }) => (
+      <InnerNode prop={componentProps} data={componentData} />
     );
   }
   return cellData;
@@ -89,6 +94,7 @@ export default () => {
   }, []);
 
   useRequest(getDeviceStatus, {
+    pollingInterval: 15000,
     onSuccess: (devicesStatus) => {
       updateGraphDevices(devicesStatus);
     },
