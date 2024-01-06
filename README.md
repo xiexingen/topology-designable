@@ -8,6 +8,8 @@ topology designable
 ## Usage
 
 ```bash
+npm install topology-designable
+or
 yarn add topology-designable
 ```
 
