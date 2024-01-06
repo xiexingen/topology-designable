@@ -15,6 +15,10 @@ nav:
 
 <code src="./demos/simple.tsx"></code>
 
+### 监控面板
+
+<code src="./demos/monitor.tsx"></code>
+
 ## API
 
 | 参数    | 说明                                               | 类型     | 默认值 |

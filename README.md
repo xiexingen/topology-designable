@@ -13,6 +13,12 @@ or
 yarn add topology-designable
 ```
 
+## TODO
+
+[] 使用 styled-components 替代掉现有 less 样式
+[] 支持注册自定义节点
+[] 去掉 cssvar 的主题颜色
+
 ## Development
 
 ```bash

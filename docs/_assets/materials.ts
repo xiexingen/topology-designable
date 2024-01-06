@@ -178,7 +178,7 @@ export const dashboard: Topology.Materials = [
       },
       {
         id: 'cloud',
-        component: 'topology-downlink',
+        component: 'topology-device',
         size: {
           height: 74,
           width: 74,
@@ -190,7 +190,7 @@ export const dashboard: Topology.Materials = [
           background: BACKGROUND_NORMAL,
         },
       },
-    ]
+    ],
   },
   {
     name: 'other',
@@ -203,7 +203,7 @@ export const dashboard: Topology.Materials = [
         embeddable: true,
         componentProps: {
           borderStyle: 'solid',
-          background: 'var(--topology-editor-background-normal)'
+          background: 'var(--topology-editor-background-normal)',
         },
         size: {
           height: 74,
@@ -217,7 +217,7 @@ export const dashboard: Topology.Materials = [
         embeddable: true,
         componentProps: {
           borderStyle: 'dashed',
-          background: 'var(--topology-editor-background-normal)'
+          background: 'var(--topology-editor-background-normal)',
         },
         size: {
           height: 74,
@@ -231,7 +231,7 @@ export const dashboard: Topology.Materials = [
         embeddable: true,
         componentProps: {
           borderStyle: 'solid',
-          background: 'white'
+          background: 'white',
         },
         size: {
           height: 74,
@@ -260,7 +260,7 @@ export const dashboard: Topology.Materials = [
           height: 300,
           width: 20,
         },
-        'rowSpan': 2,
+        rowSpan: 2,
       },
       {
         id: 'larger-label',
@@ -277,7 +277,7 @@ export const dashboard: Topology.Materials = [
           height: 240,
           width: 60,
         },
-        'columnSpan': 2,
+        columnSpan: 2,
       },
       {
         id: 'label',
@@ -295,6 +295,6 @@ export const dashboard: Topology.Materials = [
           width: 100,
         },
       },
-    ]
-  }
+    ],
+  },
 ];

@@ -1,0 +1,1733 @@
+{
+  "id": "001",
+  "type": 1,
+  "size": { "height": 666, "width": 1888 },
+  "version": "1.0",
+  "description": "",
+  "graph": {
+    "cells": [
+      {
+        "position": { "x": 1775, "y": 123 },
+        "size": { "width": 74, "height": 74 },
+        "view": "react-shape-view",
+        "shape": "topology-device",
+        "id": "0dff46ac-3a62-4946-bdb4-8609a07cedc6",
+        "data": {
+          "componentProps": {
+            "borderStyle": "solid",
+            "label": "互联网",
+            "icon": "internet",
+            "background": "white"
+          }
+        },
+        "zIndex": 1,
+        "ports": {
+          "groups": {
+            "top": {
+              "position": { "name": "top" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "bottom": {
+              "position": { "name": "bottom" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "left": {
+              "position": { "name": "left" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "right": {
+              "position": { "name": "right" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            }
+          },
+          "items": [
+            { "group": "top", "id": "3f377f4b-7722-4233-961c-99e86bc45c57" },
+            { "group": "bottom", "id": "0fce723f-712e-4fe2-9565-ad8149df5283" },
+            { "group": "left", "id": "d9dd6d37-b200-4253-a56f-851235bb0715" },
+            { "group": "right", "id": "96c42561-9ed6-4376-99a9-25a7251a3692" }
+          ]
+        }
+      },
+      {
+        "shape": "edge",
+        "attrs": {
+          "line": {
+            "stroke": "var(--topology-editor-border-color)",
+            "strokeWidth": 1,
+            "targetMarker": null,
+            "sourceMarker": null
+          }
+        },
+        "id": "c389a11a-6637-4c9a-a955-9309261bfb03",
+        "zIndex": 1,
+        "router": "normal",
+        "connector": { "name": "rounded", "args": { "radius": 0 } },
+        "source": {
+          "cell": "0dff46ac-3a62-4946-bdb4-8609a07cedc6",
+          "port": "d9dd6d37-b200-4253-a56f-851235bb0715"
+        },
+        "target": {
+          "cell": "4d25759a-ea53-46b6-8c85-ff3452dc5094",
+          "port": "50f49e5d-9911-4baa-9a05-7a98402f7785"
+        },
+        "vertices": [
+          { "x": 1720, "y": 160 },
+          { "x": 1720, "y": 82 }
+        ]
+      },
+      {
+        "shape": "edge",
+        "attrs": {
+          "line": {
+            "stroke": "var(--topology-editor-border-color)",
+            "strokeWidth": 1,
+            "targetMarker": null,
+            "sourceMarker": null
+          }
+        },
+        "id": "f027e747-785e-40ae-8871-3d3a12169903",
+        "zIndex": 1,
+        "router": "normal",
+        "connector": { "name": "rounded", "args": { "radius": 0 } },
+        "source": {
+          "cell": "0dff46ac-3a62-4946-bdb4-8609a07cedc6",
+          "port": "d9dd6d37-b200-4253-a56f-851235bb0715"
+        },
+        "target": {
+          "cell": "93b4a393-3527-4e35-bd61-5b0a6bf3ab5b",
+          "port": "4971f973-be27-49b6-898a-61e64891aacf"
+        },
+        "vertices": [
+          { "x": 1720, "y": 160 },
+          { "x": 1720, "y": 242 }
+        ]
+      },
+      {
+        "shape": "edge",
+        "attrs": {
+          "line": {
+            "stroke": "var(--topology-editor-border-color)",
+            "strokeWidth": 1,
+            "targetMarker": null,
+            "sourceMarker": null
+          }
+        },
+        "id": "df345930-2056-4d62-ae6f-2920928c429a",
+        "zIndex": 1,
+        "router": "normal",
+        "connector": { "name": "rounded", "args": { "radius": 0 } },
+        "source": {
+          "cell": "4d25759a-ea53-46b6-8c85-ff3452dc5094",
+          "port": "7ac246b9-ac9c-4250-b116-875aaeffe638"
+        },
+        "target": {
+          "cell": "4993869c-0b09-4a74-8a8b-bce31681bcf4",
+          "port": "0e6b33b3-a74a-44b4-b767-d48249809159"
+        }
+      },
+      {
+        "shape": "edge",
+        "attrs": {
+          "line": {
+            "stroke": "var(--topology-editor-border-color)",
+            "strokeWidth": 1,
+            "targetMarker": null,
+            "sourceMarker": null
+          }
+        },
+        "id": "3bffd090-d006-4923-aeaf-5baeae7b0b7e",
+        "zIndex": 1,
+        "router": "normal",
+        "connector": { "name": "rounded", "args": { "radius": 0 } },
+        "source": {
+          "cell": "93b4a393-3527-4e35-bd61-5b0a6bf3ab5b",
+          "port": "82c7a362-12d7-4661-987c-058548b8fc41"
+        },
+        "target": {
+          "cell": "4a914668-67bb-4562-a62c-a905afc5b276",
+          "port": "0e6b33b3-a74a-44b4-b767-d48249809159"
+        }
+      },
+      {
+        "shape": "edge",
+        "attrs": {
+          "line": {
+            "stroke": "var(--topology-editor-border-color)",
+            "strokeWidth": 1,
+            "targetMarker": null,
+            "sourceMarker": null
+          }
+        },
+        "id": "b87d6313-5289-482f-9400-1e966bc91f32",
+        "zIndex": 1,
+        "router": "normal",
+        "connector": { "name": "rounded", "args": { "radius": 0 } },
+        "source": {
+          "cell": "4993869c-0b09-4a74-8a8b-bce31681bcf4",
+          "port": "6cb213d7-c51f-45ed-801e-c214e618b019"
+        },
+        "target": {
+          "cell": "a27aecef-8e6c-4e80-a9a3-ef78d6a9bcf3",
+          "port": "d6b919a3-b1ba-4270-bd7d-d76f2dfc0d26"
+        }
+      },
+      {
+        "shape": "edge",
+        "attrs": {
+          "line": {
+            "stroke": "var(--topology-editor-border-color)",
+            "strokeWidth": 1,
+            "targetMarker": null,
+            "sourceMarker": null
+          }
+        },
+        "id": "6a208ac3-ccb7-4f07-b0ba-82c20325307a",
+        "zIndex": 1,
+        "router": "normal",
+        "connector": { "name": "rounded", "args": { "radius": 0 } },
+        "source": {
+          "cell": "4a914668-67bb-4562-a62c-a905afc5b276",
+          "port": "6cb213d7-c51f-45ed-801e-c214e618b019"
+        },
+        "target": {
+          "cell": "f670cb5e-99ac-48a8-aacd-02e17ce047f3",
+          "port": "d6b919a3-b1ba-4270-bd7d-d76f2dfc0d26"
+        }
+      },
+      {
+        "shape": "edge",
+        "attrs": {
+          "line": {
+            "stroke": "var(--topology-editor-border-color)",
+            "strokeWidth": 1,
+            "targetMarker": null,
+            "sourceMarker": null
+          }
+        },
+        "id": "ad776f89-acac-4428-81fe-2cf000aed0c2",
+        "zIndex": 1,
+        "router": "normal",
+        "connector": { "name": "rounded", "args": { "radius": 0 } },
+        "source": {
+          "cell": "f670cb5e-99ac-48a8-aacd-02e17ce047f3",
+          "port": "7818a88a-da6f-47ac-85ab-fc8c63c32de3"
+        },
+        "target": {
+          "cell": "96394b68-5331-4f2e-9538-da79f70e5714",
+          "port": "db68ff05-c532-4701-9b8d-eafba8ea742d"
+        },
+        "vertices": [
+          { "x": 1180, "y": 242 },
+          { "x": 1180, "y": 160 }
+        ]
+      },
+      {
+        "shape": "edge",
+        "attrs": {
+          "line": {
+            "stroke": "var(--topology-editor-border-color)",
+            "strokeWidth": 1,
+            "targetMarker": null,
+            "sourceMarker": null
+          }
+        },
+        "id": "83cb8651-ef1f-4d2a-b55b-bbeb564611f4",
+        "zIndex": 1,
+        "router": "normal",
+        "connector": { "name": "rounded", "args": { "radius": 0 } },
+        "source": {
+          "cell": "a27aecef-8e6c-4e80-a9a3-ef78d6a9bcf3",
+          "port": "7818a88a-da6f-47ac-85ab-fc8c63c32de3"
+        },
+        "target": {
+          "cell": "96394b68-5331-4f2e-9538-da79f70e5714",
+          "port": "db68ff05-c532-4701-9b8d-eafba8ea742d"
+        },
+        "vertices": [
+          { "x": 1180, "y": 82 },
+          { "x": 1180, "y": 160 }
+        ]
+      },
+      {
+        "shape": "edge",
+        "attrs": {
+          "line": {
+            "stroke": "var(--topology-editor-border-color)",
+            "strokeWidth": 1,
+            "targetMarker": null,
+            "sourceMarker": null
+          }
+        },
+        "id": "d458e84d-c5ca-4e98-b1ec-1c176f7af127",
+        "zIndex": 1,
+        "router": "normal",
+        "connector": { "name": "rounded", "args": { "radius": 0 } },
+        "source": {
+          "cell": "96394b68-5331-4f2e-9538-da79f70e5714",
+          "port": "9f6262bc-5b19-45a6-8418-c87ccfbeed7c"
+        },
+        "target": {
+          "cell": "453a7b61-9464-4452-80aa-6f507f77ea9a",
+          "port": "53956660-35e6-4c8f-9d02-87638d43fc3a"
+        },
+        "vertices": [
+          { "x": 964, "y": 160 },
+          { "x": 964, "y": 86 }
+        ]
+      },
+      {
+        "shape": "edge",
+        "attrs": {
+          "line": {
+            "stroke": "var(--topology-editor-border-color)",
+            "strokeWidth": 1,
+            "targetMarker": null,
+            "sourceMarker": null
+          }
+        },
+        "id": "b7cf450b-15ef-460a-92d2-7e211128862a",
+        "zIndex": 1,
+        "router": "normal",
+        "connector": { "name": "rounded", "args": { "radius": 0 } },
+        "source": {
+          "cell": "96394b68-5331-4f2e-9538-da79f70e5714",
+          "port": "9f6262bc-5b19-45a6-8418-c87ccfbeed7c"
+        },
+        "target": {
+          "cell": "65b1662f-2c94-4d01-93c3-76b8bd404f05",
+          "port": "86c3e18c-f685-4e9a-bb57-0a717ab70e22"
+        },
+        "vertices": [
+          { "x": 964, "y": 160 },
+          { "x": 964, "y": 242 }
+        ]
+      },
+      {
+        "shape": "edge",
+        "attrs": {
+          "line": {
+            "stroke": "var(--topology-editor-border-color)",
+            "strokeWidth": 1,
+            "targetMarker": null,
+            "sourceMarker": null
+          }
+        },
+        "id": "5cebd901-db44-48f7-9fc2-8f5657bb5cd5",
+        "zIndex": 1,
+        "router": "normal",
+        "connector": { "name": "rounded", "args": { "radius": 0 } },
+        "source": {
+          "cell": "65b1662f-2c94-4d01-93c3-76b8bd404f05",
+          "port": "4e037320-ab27-45b7-b9bc-8bc99142fdd0"
+        },
+        "target": {
+          "cell": "b2d2ee5d-b4df-4daa-81fc-0b4b0347ed1b",
+          "port": "f87673dd-5093-4493-9eac-fcbc6af109bb"
+        }
+      },
+      {
+        "shape": "edge",
+        "attrs": {
+          "line": {
+            "stroke": "var(--topology-editor-border-color)",
+            "strokeWidth": 1,
+            "targetMarker": null,
+            "sourceMarker": null
+          }
+        },
+        "id": "cea3e29c-8c18-4501-8f26-d5a5c565fe93",
+        "zIndex": 1,
+        "router": "normal",
+        "connector": { "name": "rounded", "args": { "radius": 0 } },
+        "source": {
+          "cell": "b2d2ee5d-b4df-4daa-81fc-0b4b0347ed1b",
+          "port": "fe76d6e2-24d8-452e-bcb3-9287c9365157"
+        },
+        "target": {
+          "cell": "806ba425-729c-46f6-b752-b59b37118b86",
+          "port": "57194d8c-3406-493d-8164-7a360ddf8d87"
+        },
+        "vertices": [
+          { "x": 532, "y": 242 },
+          { "x": 532, "y": 160 }
+        ]
+      },
+      {
+        "shape": "edge",
+        "attrs": {
+          "line": {
+            "stroke": "var(--topology-editor-border-color)",
+            "strokeWidth": 1,
+            "targetMarker": null,
+            "sourceMarker": null
+          }
+        },
+        "id": "1114823e-c02a-47f8-9370-243d1aad923d",
+        "zIndex": 1,
+        "router": "normal",
+        "connector": { "name": "rounded", "args": { "radius": 0 } },
+        "source": {
+          "cell": "453a7b61-9464-4452-80aa-6f507f77ea9a",
+          "port": "7b896bf2-d824-4889-a570-d7d5c7a141f0"
+        },
+        "target": {
+          "cell": "89fe56e3-b517-46d5-9d55-395a6ccfaddb",
+          "port": "22085a87-a467-4ee7-bec7-e2676c5cf2b1"
+        }
+      },
+      {
+        "shape": "edge",
+        "attrs": {
+          "line": {
+            "stroke": "var(--topology-editor-border-color)",
+            "strokeWidth": 1,
+            "targetMarker": null,
+            "sourceMarker": null
+          }
+        },
+        "id": "d44bc069-7681-4f56-b8be-0330e46f2405",
+        "zIndex": 1,
+        "router": "normal",
+        "connector": { "name": "rounded", "args": { "radius": 0 } },
+        "source": {
+          "cell": "89fe56e3-b517-46d5-9d55-395a6ccfaddb",
+          "port": "37dd91f3-519b-4fed-b654-2b9f57bded1a"
+        },
+        "target": {
+          "cell": "806ba425-729c-46f6-b752-b59b37118b86",
+          "port": "57194d8c-3406-493d-8164-7a360ddf8d87"
+        },
+        "vertices": [
+          { "x": 532, "y": 86 },
+          { "x": 532, "y": 160 }
+        ]
+      },
+      {
+        "shape": "edge",
+        "attrs": {
+          "line": {
+            "stroke": "var(--topology-editor-border-color)",
+            "strokeWidth": 1,
+            "targetMarker": null,
+            "sourceMarker": null
+          }
+        },
+        "id": "145857cb-fb18-4337-8faa-b3af6d56c1c8",
+        "zIndex": 1,
+        "router": "normal",
+        "connector": { "name": "rounded", "args": { "radius": 0 } },
+        "source": {
+          "cell": "806ba425-729c-46f6-b752-b59b37118b86",
+          "port": "a51045b3-27a2-4858-ba78-dec357c5228c"
+        },
+        "target": {
+          "cell": "80c8697b-0972-464f-9bdd-ae95a57b9e19",
+          "port": "06ceb3a1-25fa-430a-bee1-062492e7d9d9"
+        }
+      },
+      {
+        "position": { "x": 1609, "y": 45 },
+        "size": { "width": 74, "height": 74 },
+        "view": "react-shape-view",
+        "shape": "topology-device",
+        "id": "4d25759a-ea53-46b6-8c85-ff3452dc5094",
+        "data": {
+          "componentProps": {
+            "borderStyle": "solid",
+            "label": "移动专线",
+            "icon": "chinaMobile",
+            "background": "white"
+          }
+        },
+        "zIndex": 2,
+        "ports": {
+          "groups": {
+            "top": {
+              "position": { "name": "top" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "bottom": {
+              "position": { "name": "bottom" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "left": {
+              "position": { "name": "left" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "right": {
+              "position": { "name": "right" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            }
+          },
+          "items": [
+            { "group": "top", "id": "85c3c1c3-29b2-4cbc-b4d2-115224a10cfb" },
+            { "group": "bottom", "id": "c60585a1-535b-4145-99b7-741e48285aa8" },
+            { "group": "left", "id": "7ac246b9-ac9c-4250-b116-875aaeffe638" },
+            { "group": "right", "id": "50f49e5d-9911-4baa-9a05-7a98402f7785" }
+          ]
+        }
+      },
+      {
+        "position": { "x": 1609, "y": 205 },
+        "size": { "width": 74, "height": 74 },
+        "view": "react-shape-view",
+        "shape": "topology-device",
+        "id": "93b4a393-3527-4e35-bd61-5b0a6bf3ab5b",
+        "data": {
+          "componentProps": {
+            "borderStyle": "solid",
+            "label": "联通专线",
+            "icon": "chinaUnicom",
+            "background": "white"
+          }
+        },
+        "zIndex": 3,
+        "ports": {
+          "groups": {
+            "top": {
+              "position": { "name": "top" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "bottom": {
+              "position": { "name": "bottom" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "left": {
+              "position": { "name": "left" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "right": {
+              "position": { "name": "right" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            }
+          },
+          "items": [
+            { "group": "top", "id": "3cce3a2a-ab36-4832-b50f-f3f0a66294d4" },
+            { "group": "bottom", "id": "35dbb95a-2218-4bc1-9be2-b9cb309c3600" },
+            { "group": "left", "id": "82c7a362-12d7-4661-987c-058548b8fc41" },
+            { "group": "right", "id": "4971f973-be27-49b6-898a-61e64891aacf" }
+          ]
+        }
+      },
+      {
+        "position": { "x": 1438, "y": 45 },
+        "size": { "width": 74, "height": 74 },
+        "view": "react-shape-view",
+        "shape": "topology-device",
+        "id": "4993869c-0b09-4a74-8a8b-bce31681bcf4",
+        "data": {
+          "componentProps": {
+            "borderStyle": "solid",
+            "label": "防火墙",
+            "icon": "firewall",
+            "background": "white",
+            "device": "firewall"
+          }
+        },
+        "zIndex": 4,
+        "ports": {
+          "groups": {
+            "top": {
+              "position": { "name": "top" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "bottom": {
+              "position": { "name": "bottom" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "left": {
+              "position": { "name": "left" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "right": {
+              "position": { "name": "right" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            }
+          },
+          "items": [
+            { "group": "top", "id": "1718b8b8-d70f-4ce8-8495-ad6585f033e5" },
+            { "group": "bottom", "id": "b21dabc6-036e-4dbe-a300-c1616ef6dff2" },
+            { "group": "left", "id": "6cb213d7-c51f-45ed-801e-c214e618b019" },
+            { "group": "right", "id": "0e6b33b3-a74a-44b4-b767-d48249809159" }
+          ]
+        }
+      },
+      {
+        "position": { "x": 1267, "y": 45 },
+        "size": { "width": 74, "height": 74 },
+        "view": "react-shape-view",
+        "shape": "topology-device",
+        "id": "a27aecef-8e6c-4e80-a9a3-ef78d6a9bcf3",
+        "data": {
+          "componentProps": {
+            "borderStyle": "solid",
+            "label": "IP封禁",
+            "icon": "firewallIp",
+            "background": "white",
+            "device": "firewallIp"
+          }
+        },
+        "zIndex": 5,
+        "ports": {
+          "groups": {
+            "top": {
+              "position": { "name": "top" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "bottom": {
+              "position": { "name": "bottom" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "left": {
+              "position": { "name": "left" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "right": {
+              "position": { "name": "right" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            }
+          },
+          "items": [
+            { "group": "top", "id": "1b7d55b4-2406-4e95-8900-05f9853a75bc" },
+            { "group": "bottom", "id": "099d6b42-3298-4521-981e-ba33f43f26f0" },
+            { "group": "left", "id": "7818a88a-da6f-47ac-85ab-fc8c63c32de3" },
+            { "group": "right", "id": "d6b919a3-b1ba-4270-bd7d-d76f2dfc0d26" }
+          ]
+        }
+      },
+      {
+        "position": { "x": 1438, "y": 205 },
+        "size": { "width": 74, "height": 74 },
+        "view": "react-shape-view",
+        "shape": "topology-device",
+        "id": "4a914668-67bb-4562-a62c-a905afc5b276",
+        "data": {
+          "componentProps": {
+            "borderStyle": "solid",
+            "label": "防火墙",
+            "icon": "firewall",
+            "background": "white",
+            "device": "firewall"
+          }
+        },
+        "zIndex": 6,
+        "ports": {
+          "groups": {
+            "top": {
+              "position": { "name": "top" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "bottom": {
+              "position": { "name": "bottom" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "left": {
+              "position": { "name": "left" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "right": {
+              "position": { "name": "right" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            }
+          },
+          "items": [
+            { "group": "top", "id": "1718b8b8-d70f-4ce8-8495-ad6585f033e5" },
+            { "group": "bottom", "id": "b21dabc6-036e-4dbe-a300-c1616ef6dff2" },
+            { "group": "left", "id": "6cb213d7-c51f-45ed-801e-c214e618b019" },
+            { "group": "right", "id": "0e6b33b3-a74a-44b4-b767-d48249809159" }
+          ]
+        }
+      },
+      {
+        "position": { "x": 1267, "y": 205 },
+        "size": { "width": 74, "height": 74 },
+        "view": "react-shape-view",
+        "shape": "topology-device",
+        "id": "f670cb5e-99ac-48a8-aacd-02e17ce047f3",
+        "data": {
+          "componentProps": {
+            "borderStyle": "solid",
+            "label": "IP封禁",
+            "icon": "firewallIp",
+            "background": "white",
+            "device": "firewallIp"
+          }
+        },
+        "zIndex": 7,
+        "ports": {
+          "groups": {
+            "top": {
+              "position": { "name": "top" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "bottom": {
+              "position": { "name": "bottom" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "left": {
+              "position": { "name": "left" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "right": {
+              "position": { "name": "right" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            }
+          },
+          "items": [
+            { "group": "top", "id": "1b7d55b4-2406-4e95-8900-05f9853a75bc" },
+            { "group": "bottom", "id": "099d6b42-3298-4521-981e-ba33f43f26f0" },
+            { "group": "left", "id": "7818a88a-da6f-47ac-85ab-fc8c63c32de3" },
+            { "group": "right", "id": "d6b919a3-b1ba-4270-bd7d-d76f2dfc0d26" }
+          ]
+        }
+      },
+      {
+        "position": { "x": 1015, "y": 123 },
+        "size": { "width": 74, "height": 74 },
+        "view": "react-shape-view",
+        "shape": "topology-device",
+        "id": "96394b68-5331-4f2e-9538-da79f70e5714",
+        "data": {
+          "componentProps": {
+            "borderStyle": "solid",
+            "label": "交换机",
+            "icon": "switch",
+            "background": "white",
+            "device": "switch"
+          }
+        },
+        "zIndex": 8,
+        "ports": {
+          "groups": {
+            "top": {
+              "position": { "name": "top" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "bottom": {
+              "position": { "name": "bottom" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "left": {
+              "position": { "name": "left" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "right": {
+              "position": { "name": "right" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            }
+          },
+          "items": [
+            { "group": "top", "id": "9cd96216-eae6-45c6-8850-057ff16d9cab" },
+            { "group": "bottom", "id": "981f4410-610f-46b2-a953-7b2e98583205" },
+            { "group": "left", "id": "9f6262bc-5b19-45a6-8418-c87ccfbeed7c" },
+            { "group": "right", "id": "db68ff05-c532-4701-9b8d-eafba8ea742d" }
+          ]
+        }
+      },
+      {
+        "position": { "x": 817, "y": 49 },
+        "size": { "width": 74, "height": 74 },
+        "view": "react-shape-view",
+        "shape": "topology-device",
+        "id": "453a7b61-9464-4452-80aa-6f507f77ea9a",
+        "data": {
+          "componentProps": {
+            "borderStyle": "solid",
+            "label": "Web应用",
+            "icon": "web",
+            "background": "white",
+            "device": "web"
+          }
+        },
+        "zIndex": 9,
+        "ports": {
+          "groups": {
+            "top": {
+              "position": { "name": "top" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "bottom": {
+              "position": { "name": "bottom" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "left": {
+              "position": { "name": "left" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "right": {
+              "position": { "name": "right" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            }
+          },
+          "items": [
+            { "group": "top", "id": "573f7426-4651-49a7-968f-58aac5ebe875" },
+            { "group": "bottom", "id": "6ff7de4c-c1da-42d0-9cda-19e6dfe561f1" },
+            { "group": "left", "id": "7b896bf2-d824-4889-a570-d7d5c7a141f0" },
+            { "group": "right", "id": "53956660-35e6-4c8f-9d02-87638d43fc3a" }
+          ]
+        }
+      },
+      {
+        "position": { "x": 817, "y": 205 },
+        "size": { "width": 74, "height": 74 },
+        "view": "react-shape-view",
+        "shape": "topology-device",
+        "id": "65b1662f-2c94-4d01-93c3-76b8bd404f05",
+        "data": {
+          "componentProps": {
+            "borderStyle": "solid",
+            "label": "Web应用",
+            "icon": "web",
+            "background": "white",
+            "device": "web"
+          }
+        },
+        "zIndex": 10,
+        "ports": {
+          "groups": {
+            "top": {
+              "position": { "name": "top" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "bottom": {
+              "position": { "name": "bottom" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "left": {
+              "position": { "name": "left" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "right": {
+              "position": { "name": "right" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            }
+          },
+          "items": [
+            { "group": "top", "id": "aeba4268-87de-48da-80bf-825fce86f281" },
+            { "group": "bottom", "id": "38ea1b7b-96a7-4ed0-9ba2-7b6124ddb3df" },
+            { "group": "left", "id": "4e037320-ab27-45b7-b9bc-8bc99142fdd0" },
+            { "group": "right", "id": "86c3e18c-f685-4e9a-bb57-0a717ab70e22" }
+          ]
+        }
+      },
+      {
+        "position": { "x": 612, "y": 49 },
+        "size": { "width": 74, "height": 74 },
+        "view": "react-shape-view",
+        "shape": "topology-device",
+        "id": "89fe56e3-b517-46d5-9d55-395a6ccfaddb",
+        "data": {
+          "componentProps": {
+            "borderStyle": "dashed",
+            "label": "云平台",
+            "icon": "cloud",
+            "background": "var(--topology-editor-background-normal)",
+            "device": "cloud"
+          }
+        },
+        "zIndex": 11,
+        "ports": {
+          "groups": {
+            "top": {
+              "position": { "name": "top" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "bottom": {
+              "position": { "name": "bottom" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "left": {
+              "position": { "name": "left" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "right": {
+              "position": { "name": "right" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            }
+          },
+          "items": [
+            { "group": "top", "id": "77bf7360-de7d-46e5-bda5-5a2aad80fcdd" },
+            { "group": "bottom", "id": "4b63cb3d-120e-42ec-8d5b-5a031d503457" },
+            { "group": "left", "id": "37dd91f3-519b-4fed-b654-2b9f57bded1a" },
+            { "group": "right", "id": "22085a87-a467-4ee7-bec7-e2676c5cf2b1" }
+          ]
+        }
+      },
+      {
+        "position": { "x": 383, "y": 123 },
+        "size": { "width": 74, "height": 74 },
+        "view": "react-shape-view",
+        "shape": "topology-device",
+        "id": "806ba425-729c-46f6-b752-b59b37118b86",
+        "data": {
+          "componentProps": {
+            "borderStyle": "solid",
+            "label": "数据库审计",
+            "icon": "databaseAudit",
+            "background": "white",
+            "device": "databaseAudit"
+          }
+        },
+        "zIndex": 12,
+        "ports": {
+          "groups": {
+            "top": {
+              "position": { "name": "top" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "bottom": {
+              "position": { "name": "bottom" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "left": {
+              "position": { "name": "left" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "right": {
+              "position": { "name": "right" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            }
+          },
+          "items": [
+            { "group": "top", "id": "5806cdab-4076-4a13-a819-0e9d5d45cc06" },
+            { "group": "bottom", "id": "a51045b3-27a2-4858-ba78-dec357c5228c" },
+            { "group": "left", "id": "6e0e1c03-9802-42f2-aeec-078396441e66" },
+            { "group": "right", "id": "57194d8c-3406-493d-8164-7a360ddf8d87" }
+          ]
+        }
+      },
+      {
+        "position": { "x": 612, "y": 205 },
+        "size": { "width": 74, "height": 74 },
+        "view": "react-shape-view",
+        "shape": "topology-device",
+        "id": "b2d2ee5d-b4df-4daa-81fc-0b4b0347ed1b",
+        "data": {
+          "componentProps": {
+            "borderStyle": "dashed",
+            "label": "云平台",
+            "icon": "cloud",
+            "background": "var(--topology-editor-background-normal)",
+            "device": "cloud"
+          }
+        },
+        "zIndex": 13,
+        "ports": {
+          "groups": {
+            "top": {
+              "position": { "name": "top" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "bottom": {
+              "position": { "name": "bottom" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "left": {
+              "position": { "name": "left" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "right": {
+              "position": { "name": "right" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            }
+          },
+          "items": [
+            { "group": "top", "id": "bc775343-aa4e-4750-9d4c-9d83dcfbf35e" },
+            { "group": "bottom", "id": "f6fedb12-f726-432d-8846-37b2b1f647bd" },
+            { "group": "left", "id": "fe76d6e2-24d8-452e-bcb3-9287c9365157" },
+            { "group": "right", "id": "f87673dd-5093-4493-9eac-fcbc6af109bb" }
+          ]
+        }
+      },
+      {
+        "position": { "x": 1733, "y": 140 },
+        "size": { "width": 32, "height": 44 },
+        "view": "react-shape-view",
+        "shape": "topology-lightning",
+        "id": "2057b1f1-ae39-4944-beb5-29913fc7c955",
+        "data": {},
+        "zIndex": 14,
+        "ports": {
+          "groups": {
+            "top": {
+              "position": { "name": "top" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "bottom": {
+              "position": { "name": "bottom" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "left": {
+              "position": { "name": "left" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "right": {
+              "position": { "name": "right" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            }
+          },
+          "items": [
+            { "group": "top", "id": "22f3b56e-1397-4aef-93e9-4f28f8cce9bf" },
+            { "group": "bottom", "id": "6d99820a-679e-4084-aa99-c8464021f0b0" },
+            { "group": "left", "id": "ad722e00-3277-4c56-8ee3-3f79e6cb88c2" },
+            { "group": "right", "id": "e72974c4-5053-4f1f-9cf9-23037017bdfd" }
+          ]
+        }
+      },
+      {
+        "position": { "x": 290, "y": 472 },
+        "size": { "width": 260, "height": 84 },
+        "view": "react-shape-view",
+        "shape": "topology-rect",
+        "id": "80c8697b-0972-464f-9bdd-ae95a57b9e19",
+        "embeddable": true,
+        "data": {
+          "componentProps": {
+            "borderStyle": "dashed",
+            "background": "var(--topology-editor-background-normal)"
+          }
+        },
+        "zIndex": 15,
+        "children": [
+          "5c2ec5bc-3189-448f-a4f5-6e2d2ef127d9",
+          "93fe2c02-3f84-4deb-aa38-f154edf77759",
+          "4e6718fc-b762-4cbb-af24-6c1f65e968ad"
+        ],
+        "ports": {
+          "groups": {
+            "top": {
+              "position": { "name": "top" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "bottom": {
+              "position": { "name": "bottom" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "left": {
+              "position": { "name": "left" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "right": {
+              "position": { "name": "right" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            }
+          },
+          "items": [
+            { "group": "top", "id": "06ceb3a1-25fa-430a-bee1-062492e7d9d9" },
+            { "group": "bottom", "id": "afe9eded-596b-4378-b42f-fb8047c953a0" },
+            { "group": "left", "id": "d0d1ad74-369e-43cb-a905-0b688e2cbdb6" },
+            { "group": "right", "id": "4449357a-7e09-4219-a8b1-0e473678c59d" }
+          ]
+        }
+      },
+      {
+        "position": { "x": 292.0000000000008, "y": 474.9999999999983 },
+        "size": { "width": 74, "height": 74 },
+        "view": "react-shape-view",
+        "shape": "topology-device",
+        "id": "5c2ec5bc-3189-448f-a4f5-6e2d2ef127d9",
+        "data": {
+          "componentProps": {
+            "borderStyle": "none",
+            "label": "银行",
+            "icon": "bank",
+            "background": "transparent",
+            "device": "bank"
+          }
+        },
+        "zIndex": 16,
+        "parent": "80c8697b-0972-464f-9bdd-ae95a57b9e19",
+        "ports": {
+          "groups": {
+            "top": {
+              "position": { "name": "top" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "bottom": {
+              "position": { "name": "bottom" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "left": {
+              "position": { "name": "left" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "right": {
+              "position": { "name": "right" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            }
+          },
+          "items": [
+            { "group": "top", "id": "7f7f065e-24fb-4bb4-8e65-2a351410e395" },
+            { "group": "bottom", "id": "06403a33-4011-4971-b318-b86ce8556e82" },
+            { "group": "left", "id": "56e788cb-cb7a-4e69-a4d6-cf603f091c74" },
+            { "group": "right", "id": "a5cb3320-6dc7-422a-91e8-2f63c60cff16" }
+          ]
+        }
+      },
+      {
+        "position": { "x": 382.0000000000008, "y": 475.9999999999983 },
+        "size": { "width": 74, "height": 74 },
+        "view": "react-shape-view",
+        "shape": "topology-device",
+        "id": "93fe2c02-3f84-4deb-aa38-f154edf77759",
+        "data": {
+          "componentProps": {
+            "borderStyle": "none",
+            "label": "政府",
+            "icon": "government",
+            "background": "transparent",
+            "device": "government"
+          }
+        },
+        "zIndex": 17,
+        "parent": "80c8697b-0972-464f-9bdd-ae95a57b9e19",
+        "ports": {
+          "groups": {
+            "top": {
+              "position": { "name": "top" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "bottom": {
+              "position": { "name": "bottom" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "left": {
+              "position": { "name": "left" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "right": {
+              "position": { "name": "right" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            }
+          },
+          "items": [
+            { "group": "top", "id": "5a02632e-e93c-4522-b55b-d2cf64c8dc70" },
+            { "group": "bottom", "id": "fc69f065-b3dd-4079-b11d-eb680ec480d8" },
+            { "group": "left", "id": "c09d12f3-5d7e-42e7-9827-8c335694b03b" },
+            { "group": "right", "id": "f1b6d6cc-297b-4883-9459-104b5e4b80ed" }
+          ]
+        }
+      },
+      {
+        "position": { "x": 470.0000000000008, "y": 475.9999999999983 },
+        "size": { "width": 74, "height": 74 },
+        "view": "react-shape-view",
+        "shape": "topology-device",
+        "id": "4e6718fc-b762-4cbb-af24-6c1f65e968ad",
+        "data": {
+          "componentProps": {
+            "borderStyle": "none",
+            "label": "公安",
+            "icon": "police",
+            "background": "transparent",
+            "device": "police"
+          }
+        },
+        "zIndex": 18,
+        "parent": "80c8697b-0972-464f-9bdd-ae95a57b9e19",
+        "ports": {
+          "groups": {
+            "top": {
+              "position": { "name": "top" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "bottom": {
+              "position": { "name": "bottom" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "left": {
+              "position": { "name": "left" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "right": {
+              "position": { "name": "right" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            }
+          },
+          "items": [
+            { "group": "top", "id": "a5182148-343d-492e-b5c8-5cd8249dc526" },
+            { "group": "bottom", "id": "0cf5b5d0-a318-421d-9d61-adc4e779b9cb" },
+            { "group": "left", "id": "cfbe761c-b94c-4630-a57b-07358b0e2e25" },
+            { "group": "right", "id": "8da48dd3-9c2b-4b0e-98b1-03c25dbd7abf" }
+          ]
+        }
+      }
+    ]
+  }
+}
