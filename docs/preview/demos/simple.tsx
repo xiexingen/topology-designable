@@ -10,7 +10,7 @@ export default () => {
   });
 
   useEffect(() => {
-    const dashboardData = require('../../_assets/dashboard.json');
+    const dashboardData = require('../../_assets/data/dashboard.json');
     setState({
       value: dashboardData['graph'],
     });

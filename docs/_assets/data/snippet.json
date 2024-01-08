@@ -1,0 +1,365 @@
+{
+  "id": 1704681873058,
+  "size": { "height": 666, "width": 1888 },
+  "version": "1.0",
+  "graph": {
+    "cells": [
+      {
+        "position": { "x": 216.9999999999984, "y": 97.00000000000341 },
+        "size": { "width": 316, "height": 84 },
+        "view": "react-shape-view",
+        "shape": "topology-rect",
+        "id": "80c8697b-0972-464f-9bdd-ae95a57b9e19",
+        "embeddable": true,
+        "data": {
+          "componentProps": {
+            "borderStyle": "dashed",
+            "background": "var(--topology-editor-background-normal)"
+          }
+        },
+        "zIndex": 15,
+        "children": [
+          "5c2ec5bc-3189-448f-a4f5-6e2d2ef127d9",
+          "93fe2c02-3f84-4deb-aa38-f154edf77759",
+          "4e6718fc-b762-4cbb-af24-6c1f65e968ad",
+          "d9e5b5cd-3ea6-4bbb-929a-e2c41ff8d07b",
+          "a5ced0c8-d079-4d69-9e45-5cf3de1e3b26"
+        ],
+        "ports": {
+          "groups": {
+            "top": {
+              "position": { "name": "top" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "bottom": {
+              "position": { "name": "bottom" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "left": {
+              "position": { "name": "left" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "right": {
+              "position": { "name": "right" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            }
+          },
+          "items": [
+            { "group": "top", "id": "06ceb3a1-25fa-430a-bee1-062492e7d9d9" },
+            { "group": "bottom", "id": "afe9eded-596b-4378-b42f-fb8047c953a0" },
+            { "group": "left", "id": "d0d1ad74-369e-43cb-a905-0b688e2cbdb6" },
+            { "group": "right", "id": "4449357a-7e09-4219-a8b1-0e473678c59d" }
+          ]
+        }
+      },
+      {
+        "position": { "x": 218.9999999999992, "y": 101.00000000000227 },
+        "size": { "width": 74, "height": 74 },
+        "view": "react-shape-view",
+        "shape": "topology-device",
+        "id": "5c2ec5bc-3189-448f-a4f5-6e2d2ef127d9",
+        "data": {
+          "componentProps": {
+            "borderStyle": "none",
+            "label": "银行",
+            "icon": "bank",
+            "background": "transparent",
+            "device": "bank"
+          }
+        },
+        "zIndex": 16,
+        "parent": "80c8697b-0972-464f-9bdd-ae95a57b9e19",
+        "ports": {
+          "groups": {
+            "top": {
+              "position": { "name": "top" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "bottom": {
+              "position": { "name": "bottom" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "left": {
+              "position": { "name": "left" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "right": {
+              "position": { "name": "right" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            }
+          },
+          "items": [
+            { "group": "top", "id": "7f7f065e-24fb-4bb4-8e65-2a351410e395" },
+            { "group": "bottom", "id": "06403a33-4011-4971-b318-b86ce8556e82" },
+            { "group": "left", "id": "56e788cb-cb7a-4e69-a4d6-cf603f091c74" },
+            { "group": "right", "id": "a5cb3320-6dc7-422a-91e8-2f63c60cff16" }
+          ]
+        }
+      },
+      {
+        "position": { "x": 338.9999999999992, "y": 101.00000000000227 },
+        "size": { "width": 74, "height": 74 },
+        "view": "react-shape-view",
+        "shape": "topology-device",
+        "id": "93fe2c02-3f84-4deb-aa38-f154edf77759",
+        "data": {
+          "componentProps": {
+            "borderStyle": "none",
+            "label": "政府",
+            "icon": "government",
+            "background": "transparent",
+            "device": "government"
+          }
+        },
+        "zIndex": 17,
+        "parent": "80c8697b-0972-464f-9bdd-ae95a57b9e19",
+        "ports": {
+          "groups": {
+            "top": {
+              "position": { "name": "top" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "bottom": {
+              "position": { "name": "bottom" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "left": {
+              "position": { "name": "left" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "right": {
+              "position": { "name": "right" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            }
+          },
+          "items": [
+            { "group": "top", "id": "5a02632e-e93c-4522-b55b-d2cf64c8dc70" },
+            { "group": "bottom", "id": "fc69f065-b3dd-4079-b11d-eb680ec480d8" },
+            { "group": "left", "id": "c09d12f3-5d7e-42e7-9827-8c335694b03b" },
+            { "group": "right", "id": "f1b6d6cc-297b-4883-9459-104b5e4b80ed" }
+          ]
+        }
+      },
+      {
+        "position": { "x": 458.9999999999992, "y": 101.00000000000227 },
+        "size": { "width": 74, "height": 74 },
+        "view": "react-shape-view",
+        "shape": "topology-device",
+        "id": "4e6718fc-b762-4cbb-af24-6c1f65e968ad",
+        "data": {
+          "componentProps": {
+            "borderStyle": "none",
+            "label": "公安",
+            "icon": "police",
+            "background": "transparent",
+            "device": "police"
+          }
+        },
+        "zIndex": 18,
+        "parent": "80c8697b-0972-464f-9bdd-ae95a57b9e19",
+        "ports": {
+          "groups": {
+            "top": {
+              "position": { "name": "top" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "bottom": {
+              "position": { "name": "bottom" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "left": {
+              "position": { "name": "left" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "right": {
+              "position": { "name": "right" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            }
+          },
+          "items": [
+            { "group": "top", "id": "a5182148-343d-492e-b5c8-5cd8249dc526" },
+            { "group": "bottom", "id": "0cf5b5d0-a318-421d-9d61-adc4e779b9cb" },
+            { "group": "left", "id": "cfbe761c-b94c-4630-a57b-07358b0e2e25" },
+            { "group": "right", "id": "8da48dd3-9c2b-4b0e-98b1-03c25dbd7abf" }
+          ]
+        }
+      },
+      {
+        "shape": "edge",
+        "attrs": {
+          "line": {
+            "stroke": "var(--topology-editor-border-color)",
+            "strokeWidth": 1,
+            "targetMarker": null,
+            "sourceMarker": null
+          }
+        },
+        "id": "d9e5b5cd-3ea6-4bbb-929a-e2c41ff8d07b",
+        "zIndex": 19,
+        "router": "normal",
+        "connector": { "name": "rounded", "args": { "radius": 0 } },
+        "source": {
+          "cell": "4e6718fc-b762-4cbb-af24-6c1f65e968ad",
+          "port": "cfbe761c-b94c-4630-a57b-07358b0e2e25"
+        },
+        "target": {
+          "cell": "93fe2c02-3f84-4deb-aa38-f154edf77759",
+          "port": "f1b6d6cc-297b-4883-9459-104b5e4b80ed"
+        },
+        "parent": "80c8697b-0972-464f-9bdd-ae95a57b9e19"
+      },
+      {
+        "shape": "edge",
+        "attrs": {
+          "line": {
+            "stroke": "var(--topology-editor-border-color)",
+            "strokeWidth": 1,
+            "targetMarker": null,
+            "sourceMarker": null
+          }
+        },
+        "id": "a5ced0c8-d079-4d69-9e45-5cf3de1e3b26",
+        "zIndex": 20,
+        "router": "normal",
+        "connector": { "name": "rounded", "args": { "radius": 0 } },
+        "source": {
+          "cell": "93fe2c02-3f84-4deb-aa38-f154edf77759",
+          "port": "c09d12f3-5d7e-42e7-9827-8c335694b03b"
+        },
+        "target": {
+          "cell": "5c2ec5bc-3189-448f-a4f5-6e2d2ef127d9",
+          "port": "a5cb3320-6dc7-422a-91e8-2f63c60cff16"
+        },
+        "parent": "80c8697b-0972-464f-9bdd-ae95a57b9e19"
+      }
+    ]
+  }
+}

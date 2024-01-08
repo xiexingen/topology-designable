@@ -1,19 +1,19 @@
-import type { CollapseProps } from 'antd'
-import type { Node } from '@antv/x6'
-import type { Topology } from '@/types/global.d';
-import React, { useContext, useEffect, useRef, useState } from 'react';
-import { Dnd } from '@antv/x6-plugin-dnd';
-import { Collapse, Input } from 'antd';
-import { EVENT_MAP, TOPOLOGY_SNIPPET } from '@/constants/index';
 import defaultPorts from '@/constants/default-ports';
-import TopologyContext from '@/contexts/topology'
+import { EVENT_MAP, TOPOLOGY_SNIPPET } from '@/constants/index';
+import TopologyContext from '@/contexts/topology';
 import createSnippet from '@/core/snippet';
-import MaterialNode from './material-node'
+import type { Topology } from '@/types/global.d';
+import type { Node } from '@antv/x6';
+import { Dnd } from '@antv/x6-plugin-dnd';
+import type { CollapseProps } from 'antd';
+import { Collapse, Input } from 'antd';
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import MaterialNode from './material-node';
 
 interface IMaterialPanelProps {
   filterable?: boolean;
   iconMap: { [key: string]: Topology.TopologyIconProp };
-  materials: Topology.Materials
+  materials: Topology.Materials;
 }
 
 /**
@@ -23,9 +23,9 @@ interface IMaterialPanelProps {
  */
 function getMaterialMap(materials: Topology.Materials) {
   const result: Record<string, Topology.Node> = {};
-  materials?.forEach(group => {
+  materials?.forEach((group) => {
     const prefix = group.name ? `${group.name}-` : '';
-    group.items.forEach(material => {
+    group.items.forEach((material) => {
       const key = `${prefix}${material.id}`;
       result[key] = material;
     });
@@ -41,13 +41,15 @@ const MaterialPanel: React.FC<IMaterialPanelProps> = (props) => {
   // 存储是否有组
   const [hasGroup, setHasGroup] = useState(true);
   // 默认打开的面板
-  const [activeKeys, setActiveKeys] = useState<string[]>([])
+  const [activeKeys, setActiveKeys] = useState<string[]>([]);
   // 展示的物料
   const [materials, setMaterials] = useState(props.materials);
   // material id - 配置映射
-  const [materialMap, setMaterialMap] = useState<Record<string, Topology.Node>>({});
+  const [materialMap, setMaterialMap] = useState<Record<string, Topology.Node>>(
+    {},
+  );
 
-  const { graph,eventBus } = useContext(TopologyContext);
+  const { graph, eventBus } = useContext(TopologyContext);
 
   // 初始化物料侧边栏
   const initSideBar = () => {
@@ -68,7 +70,7 @@ const MaterialPanel: React.FC<IMaterialPanelProps> = (props) => {
       //   return node.clone();
       // },
     });
-  }
+  };
 
   /**
    * 针对代码片段的处理逻辑
@@ -87,45 +89,43 @@ const MaterialPanel: React.FC<IMaterialPanelProps> = (props) => {
     }
     // 解决往容器中拖拽获取不到 parent 的情况
     await new Promise((resolve) => {
-      resolve(1)
+      resolve(1);
     });
     // 创建拓扑图片段
     createSnippet({
       graph: graph,
       snippetNode: arg.cell,
     });
-  }
+  };
 
   useEffect(() => {
-    const hasGroupName = props.materials.some(item => item.name);
+    const hasGroupName = props.materials.some((item) => item.name);
     // 是否有组
     setHasGroup(hasGroupName);
     // 默认打开的物料面板
-    setActiveKeys(props.materials.map(item => item.name))
+    setActiveKeys(props.materials.map((item) => item.name));
     // id - 配置映射
     const tempMaterialMap = getMaterialMap(props.materials);
     setMaterialMap(tempMaterialMap);
-  }, [props.materials])
+  }, [props.materials]);
 
   useEffect(() => {
+    if (!graph) {
+      return;
+    }
+    initSideBar();
     eventBus?.on(EVENT_MAP.NODE_ADDED, onNodeAdded);
     return () => {
       eventBus?.off(EVENT_MAP.NODE_ADDED, onNodeAdded);
-    }
-  }, [])
-
-  useEffect(()=>{
-    if(graph){
-      initSideBar();
-    }
-  },[graph])
+    };
+  }, [graph]);
 
   const handleStartDrag = (e: any) => {
     if (!graph) {
-      throw Error('[graph] graph 尚未初始化')
+      throw Error('[graph] graph 尚未初始化');
     }
     if (!dndRef.current) {
-      throw Error('[graph] dnd实例尚未初始化')
+      throw Error('[graph] dnd实例尚未初始化');
     }
     const target = e.currentTarget;
     const key = target.getAttribute('data-type');
@@ -138,91 +138,100 @@ const MaterialPanel: React.FC<IMaterialPanelProps> = (props) => {
       size: componentConfig.size,
       ports: defaultPorts,
       embeddable: componentConfig.embeddable,
-      data:{
+      data: {
         componentProps: componentConfig.componentProps,
-      }
+      },
     };
     const node = graph.createNode(nodeConfig);
     dndRef.current.start(node, e);
-  }
+  };
 
-
-  const items: CollapseProps['items'] = materials.map(collapseGroup => {
+  const items: CollapseProps['items'] = materials.map((collapseGroup) => {
     return {
       key: collapseGroup.name,
       label: collapseGroup.label,
-      children: collapseGroup.items?.map(item => {
+      children: collapseGroup.items?.map((item) => {
         return (
           <MaterialNode
             key={`${collapseGroup.name}-${item.id}`}
-            icon={typeof item.icon === 'string' ? props.iconMap[item.icon]?.value : item.icon}
+            icon={
+              typeof item.icon === 'string'
+                ? props.iconMap[item.icon]?.value ?? item.icon
+                : item.icon
+            }
             prefix={collapseGroup.name}
             material={item}
             onMouseDown={handleStartDrag}
           />
-        )
-      })
-    }
+        );
+      }),
+    };
   });
 
   const handleSearch = (value: string) => {
     const filterText = value || '';
-    const filteredMaterials = props.materials.map(material => {
+    const filteredMaterials = props.materials.map((material) => {
       return {
         ...material,
-        items: material.items?.filter(item => {
+        items: material.items?.filter((item) => {
           const label = item.label || item.componentProps?.label || '';
-          return label.toLocaleLowerCase().indexOf(filterText.toLocaleLowerCase()) !== -1;
-        })
+          return (
+            label
+              .toLocaleLowerCase()
+              .indexOf(filterText.toLocaleLowerCase()) !== -1
+          );
+        }),
       };
     });
-    setMaterials(filteredMaterials)
-  }
+    setMaterials(filteredMaterials);
+  };
 
   const handleChangeActiveKeys = (keys: string | string[]) => {
     if (typeof keys === 'string') {
-      setActiveKeys([keys])
+      setActiveKeys([keys]);
       return;
     }
-    setActiveKeys(keys)
-  }
+    setActiveKeys(keys);
+  };
 
   return (
     <div ref={sideBarRef} className="topology-designable-material-panel">
-      {
-        props.filterable && (
-          <div className="search-container">
-            <Input.Search
-              placeholder="搜索"
-              enterButton
-              allowClear={true}
-              onSearch={handleSearch}
-            />
-          </div>
-        )
-      }
-      {
-        hasGroup ? (
-          <Collapse activeKey={activeKeys} onChange={handleChangeActiveKeys} items={items} />
-        ) : (
-          <div className="material-list">
-            {
-              props.materials[0].items.map(item => {
-                return (
-                  <MaterialNode
-                    key={item.id}
-                    icon={typeof item.icon === 'string' ? props.iconMap[item.icon]?.value : item.icon}
-                    material={item}
-                    onMouseDown={handleStartDrag}
-                  />
-                )
-              })
-            }
-          </div>
-        )
-      }
+      {props.filterable && (
+        <div className="search-container">
+          <Input.Search
+            placeholder="搜索"
+            enterButton
+            allowClear={true}
+            onSearch={handleSearch}
+          />
+        </div>
+      )}
+      {hasGroup ? (
+        <Collapse
+          activeKey={activeKeys}
+          onChange={handleChangeActiveKeys}
+          items={items}
+        />
+      ) : (
+        <div className="material-list">
+          {props.materials[0].items.map((item) => {
+            return (
+              <MaterialNode
+                key={item.id}
+                icon={
+                  typeof item.icon === 'string'
+                    ? props.iconMap[item.icon]?.value
+                    : item.icon
+                }
+                material={item}
+                onMouseDown={handleStartDrag}
+              />
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };
 
-export default MaterialPanel
+export default MaterialPanel;
