@@ -1,6 +1,6 @@
 import type { Topology } from '@/types/global.d';
-import type { Edge, Graph, Node } from "@antv/x6";
-import defaultPorts from "../constants/default-ports";
+import type { Edge, Graph, Node } from '@antv/x6';
+import defaultPorts from '../constants/default-ports';
 
 export type TSnippetOption = {
   graph: Graph;
@@ -14,7 +14,6 @@ export type TSnippetOption = {
 function createSnippet(option: TSnippetOption) {
   const { graph, snippetNode } = option;
   const nodeData = snippetNode.getData();
-
   const { children: snippetProps } = nodeData.componentProps;
   const position = snippetNode.getPosition();
   const size = snippetNode.getSize();
@@ -22,12 +21,14 @@ function createSnippet(option: TSnippetOption) {
   graph.removeNode(snippetNode, { disconnectEdges: true, dryrun: true });
   // 查找配置的父层容器
   const containerOption: Topology.SnippetNode = snippetProps.nodes.find(
-    (item: any) => !item.parent
+    (item: any) => !item.parent,
   );
   const containerNode: Node = graph.addNode({
     shape: containerOption.component,
     embeddable: containerOption.embeddable,
-    componentProps: containerOption.componentProps,
+    data: {
+      componentProps: containerOption.componentProps,
+    },
     position,
     size: size,
     ports: defaultPorts,
@@ -36,7 +37,7 @@ function createSnippet(option: TSnippetOption) {
   const idMap: Record<string, Node> = {};
   // 添加子节点
   const childNodes: Topology.SnippetNode[] = snippetProps.nodes.filter(
-    (item: any) => item.parent
+    (item: any) => item.parent,
   );
   const containerZindex = containerNode.getZIndex() ?? 1;
   childNodes.forEach((item) => {
@@ -49,7 +50,9 @@ function createSnippet(option: TSnippetOption) {
     const newNode = graph.createNode({
       position: itemPosition,
       shape: item.component,
-      componentProps: item.componentProps,
+      data: {
+        componentProps: item.componentProps,
+      },
       size: item.size,
       zIndex: containerZindex + 1,
       ports: defaultPorts,
@@ -70,14 +73,14 @@ function createSnippet(option: TSnippetOption) {
     return {
       attrs: {
         line: {
-          stroke: "var(--topology-editor-border-color)",
+          stroke: 'var(--topology-editor-border-color)',
           strokeWidth: 1,
           targetMarker: null,
           sourceMarker: null,
         },
       },
-      router: "normal",
-      connector: "rounded",
+      router: 'normal',
+      connector: 'rounded',
       ...edgeConfig,
       source: {
         cell: sourceCell,

@@ -1,0 +1,236 @@
+{
+  "id": 1704694385883,
+  "size": { "height": 666, "width": 1888 },
+  "version": "1.0",
+  "graph": {
+    "cells": [
+      {
+        "position": { "x": 223.9999999999991, "y": 32.00000000000091 },
+        "size": { "width": 260, "height": 192 },
+        "view": "react-shape-view",
+        "shape": "topology-device",
+        "id": "95557c22-fea1-4995-835b-16e720daa3f9",
+        "embeddable": true,
+        "data": {
+          "componentProps": {
+            "borderStyle": "solid",
+            "label": "数据库审计",
+            "icon": "databaseAudit",
+            "background": "white"
+          }
+        },
+        "ports": {
+          "groups": {
+            "top": {
+              "position": { "name": "top" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "bottom": {
+              "position": { "name": "bottom" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "left": {
+              "position": { "name": "left" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "right": {
+              "position": { "name": "right" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            }
+          },
+          "items": [
+            { "group": "top", "id": "bdbac59c-eb36-4e53-a860-15463dc08c28" },
+            { "group": "bottom", "id": "0706b9d0-e8c5-4355-99f7-278c2f7c3081" },
+            { "group": "left", "id": "489f7843-f12d-4fbb-b854-a0fee58ba3f0" },
+            { "group": "right", "id": "f7316cca-133f-4f74-a67e-dd461770528a" }
+          ]
+        },
+        "zIndex": 1,
+        "children": [
+          "da15b5a6-ca2b-4c39-b914-9d1700a93a57",
+          "2c9b3661-e0e5-45b8-b88d-7f10f29252a9"
+        ]
+      },
+      {
+        "position": { "x": 240, "y": 132 },
+        "size": { "width": 74, "height": 74 },
+        "view": "react-shape-view",
+        "shape": "topology-rect",
+        "id": "da15b5a6-ca2b-4c39-b914-9d1700a93a57",
+        "embeddable": true,
+        "data": {
+          "componentProps": {
+            "borderStyle": "dashed",
+            "background": "var(--topology-editor-background-normal)"
+          }
+        },
+        "ports": {
+          "groups": {
+            "top": {
+              "position": { "name": "top" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "bottom": {
+              "position": { "name": "bottom" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "left": {
+              "position": { "name": "left" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "right": {
+              "position": { "name": "right" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            }
+          },
+          "items": [
+            { "group": "top", "id": "f7f043c2-c7d8-4bd4-9972-72ac23b48866" },
+            { "group": "bottom", "id": "d5d0e9b2-f95c-418a-ac78-957e3aaaabec" },
+            { "group": "left", "id": "ae6bc2a3-dfaa-4a56-a6e6-fd27cb40449d" },
+            { "group": "right", "id": "49e1a45e-ed43-43a4-bc31-48b581c43917" }
+          ]
+        },
+        "zIndex": 2,
+        "parent": "95557c22-fea1-4995-835b-16e720daa3f9"
+      },
+      {
+        "position": { "x": 388, "y": 132 },
+        "size": { "width": 74, "height": 74 },
+        "view": "react-shape-view",
+        "shape": "topology-circle",
+        "id": "2c9b3661-e0e5-45b8-b88d-7f10f29252a9",
+        "embeddable": true,
+        "data": {
+          "componentProps": {
+            "borderStyle": "solid",
+            "background": "var(--topology-editor-background-normal)"
+          }
+        },
+        "ports": {
+          "groups": {
+            "top": {
+              "position": { "name": "top" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "bottom": {
+              "position": { "name": "bottom" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "left": {
+              "position": { "name": "left" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            },
+            "right": {
+              "position": { "name": "right" },
+              "attrs": {
+                "circle": {
+                  "r": 6,
+                  "magnet": true,
+                  "stroke": "var(--topology-editor-border-color)",
+                  "strokeWidth": 1,
+                  "style": { "visibility": "hidden" }
+                }
+              }
+            }
+          },
+          "items": [
+            { "group": "top", "id": "c3062331-92fc-4f82-9849-d01c5492a457" },
+            { "group": "bottom", "id": "e0571989-b5f8-4df9-b365-4ecd552f52a0" },
+            { "group": "left", "id": "052fdeda-2370-47e6-9498-6a63ecce7da0" },
+            { "group": "right", "id": "aa5bc51b-b338-4d3d-b291-69796050f32d" }
+          ]
+        },
+        "zIndex": 3,
+        "parent": "95557c22-fea1-4995-835b-16e720daa3f9"
+      }
+    ]
+  }
+}

@@ -1,16 +1,17 @@
-import { GRAPH_ZOOM } from "@/constants";
-import defaultGrid from "@/constants/default-grid";
-import { bindGraphEvent, bindKeyboardEvent } from "@/core/events";
-import registerDependency from "@/core/register-dependency";
-import type { PredefinePluginOption } from "@/core/register-plugins";
-import registerPlugins from "@/core/register-plugins";
+import { GRAPH_ZOOM } from '@/constants';
+import defaultGrid from '@/constants/default-grid';
+import { bindGraphEvent, bindKeyboardEvent } from '@/core/events';
+import registerDependency from '@/core/register-dependency';
+import type { PredefinePluginOption } from '@/core/register-plugins';
+import registerPlugins from '@/core/register-plugins';
 import EventBus from '@/utils/event-bus';
-import type { Options } from "@antv/x6";
-import { Graph, Shape } from "@antv/x6";
-import { useEffect, useState } from "react";
+import type { Options } from '@antv/x6';
+import { Graph, Shape } from '@antv/x6';
+import { useEffect, useState } from 'react';
+import useCompatible from './useCompatible';
 
 export type GraphOptions = {
-  graphOption: Partial<Omit<Options.Manual, "container">>;
+  graphOption: Partial<Omit<Options.Manual, 'container'>>;
   pluginOption?: PredefinePluginOption;
   keyBoardEvent?: boolean;
   graphEvent?: boolean;
@@ -19,9 +20,11 @@ export type GraphOptions = {
 export default (
   mountElement: React.MutableRefObject<HTMLElement> | null,
   eventBus: EventBus,
-  option?: GraphOptions
+  option?: GraphOptions,
 ) => {
-  const [graphInstance,setGraphInstance] =useState<Graph>()
+  const [graphInstance, setGraphInstance] = useState<Graph>();
+  // 解决 safiri 浏览器下 forgetObject下 body position 为 static的问题
+  useCompatible(mountElement);
 
   useEffect(() => {
     registerDependency();
@@ -41,11 +44,11 @@ export default (
       autoResize: true, //是否监听容器大小改变，并自动更新画布大小
       // moveThreshold: 2,
       background: {
-        color: "#FFFFFF",
+        color: '#FFFFFF',
         opacity: 1,
-        position: "center",
-        repeat: "no-repeat",
-        size: "100%",
+        position: 'center',
+        repeat: 'no-repeat',
+        size: '100%',
         angle: 2,
         quality: 1,
       },
@@ -56,9 +59,9 @@ export default (
         /** 只有有父节点标识的节点才能作为群组容器 */
         findParent({ node }) {
           const bbox = node.getBBox();
-          const that= this as any;
+          const that = this as any;
           return that.getNodes().filter((node) => {
-            const embeddable = node.getProp("embeddable");
+            const embeddable = node.getProp('embeddable');
             if (embeddable) {
               const targetBBox = node.getBBox();
               return bbox.isIntersectWithRect(targetBBox);
@@ -93,7 +96,7 @@ export default (
         enabled: true,
         global: true,
         zoomAtMousePosition: true,
-        modifiers: ["ctrl", "meta"],
+        modifiers: ['ctrl', 'meta'],
         minScale: GRAPH_ZOOM.min,
         maxScale: GRAPH_ZOOM.max,
         factor: 1.1,
@@ -107,14 +110,14 @@ export default (
         allowEdge: true,
         allowLoop: false,
         allowMulti: true, // 'withPort',
-        connectionPoint: "anchor",
+        connectionPoint: 'anchor',
         // connectionPoint: {
         //   name: 'anchor',
         //   args: {
         //     sticky: true,
         //   },
         // },
-        router: "orth",
+        router: 'orth',
         // connector: {
         //   name: 'rounded',
         //   args: {
@@ -129,14 +132,14 @@ export default (
               line: {
                 sourceMarker: null,
                 targetMarker: null,
-                stroke: "var(--topology-editor-border-color)",
+                stroke: 'var(--topology-editor-border-color)',
                 strokeWidth: 1,
               },
             },
             zIndex: 1,
-            router: "normal",
+            router: 'normal',
             connector: {
-              name: "rounded",
+              name: 'rounded',
               args: {
                 radius: 0,
               },
@@ -150,22 +153,22 @@ export default (
       highlighting: {
         // 连接桩可以被连接时在连接桩外围围渲染一个包围框
         magnetAvailable: {
-          name: "stroke",
+          name: 'stroke',
           args: {
             attrs: {
-              fill: "#fff",
-              stroke: "#A4DEB1",
+              fill: '#fff',
+              stroke: '#A4DEB1',
               strokeWidth: 4,
             },
           },
         },
         // 连接桩吸附连线时在连接桩外围围渲染一个包围框
         magnetAdsorbed: {
-          name: "stroke",
+          name: 'stroke',
           args: {
             attrs: {
-              fill: "#fff",
-              stroke: "#31d0c6",
+              fill: '#fff',
+              stroke: '#31d0c6',
               strokeWidth: 4,
             },
           },
@@ -190,15 +193,15 @@ export default (
     registerPlugins(graph, option?.pluginOption);
 
     // 绑定快捷键
-    if(option?.keyBoardEvent !== false){
+    if (option?.keyBoardEvent !== false) {
       bindKeyboardEvent(graph);
     }
 
     // 绑定画布事件
-    if(option?.graphEvent !== false){
-      bindGraphEvent(graph, mountElement.current,eventBus);
+    if (option?.graphEvent !== false) {
+      bindGraphEvent(graph, mountElement.current, eventBus);
     }
-    setGraphInstance(graph)
+    setGraphInstance(graph);
   }, [mountElement]);
 
   return [graphInstance];
