@@ -10,7 +10,6 @@ import { dashboard as dashboardMaterials } from '../../_assets/materials';
 
 export default () => {
   const editorRef = useRef();
-  const [messageApi] = message.useMessage();
   const [api, contextHolder] = notification.useNotification();
   const [state, setState] = useSetState({
     size: {
@@ -29,7 +28,7 @@ export default () => {
     }
     const selectedCells = graphInstance.getSelectedCells();
     if (Array.isArray(selectedCells) && selectedCells.length !== 1) {
-      messageApi.error('[graph] 仅支持选中一个导出节点(容器节点)');
+      message.error('[graph] 生成片段只能选择而且必须选择一个容器节点');
       return;
     }
     const selectedContainer = selectedCells[0] as any;
@@ -149,7 +148,7 @@ export default () => {
       });
       return;
     }
-    messageApi.error('[graph] 导出的片段至少包含一个子节点');
+    message.error('[graph] 导出的片段至少包含一个子节点');
   };
 
   // 模拟加载后端接口数据
