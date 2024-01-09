@@ -54,7 +54,7 @@ nav:
 | propsPanelSchemaMap  | 属性面板动态表单配置，请查看 formily 的 schema 配置     | `Object`                                         | -                        |
 | propsPanelComponents | 属性面板动态组件配置，请查看 formily 的 components 配置 | `Object`                                         | -                        |
 | size                 | 画布尺寸                                                | `SizeOption`                                     | {height: 666,width:1888} |
-| toolbar              | 顶部工具栏配置                                          | `false` \| `true` \| `ToolbarOption` \| `Object` | true                     |
+| toolbar              | 顶部工具栏配置                                          | `false` \| `true` \| `Partial<ToolbarOption>` | true                     |
 | onImport             | 导入方法                                                | `Function`                                       | -                        |
 | onExport             | 导出方法                                                | `Function`                                       | -                        |
 | onChange             | 画板内容改变时触发的方法                                | `Function`                                       | -                        |
